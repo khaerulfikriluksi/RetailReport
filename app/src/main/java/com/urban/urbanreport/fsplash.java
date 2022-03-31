@@ -160,20 +160,19 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
         db.execSQL("DROP TABLE IF EXISTS `tbl_departemen`");
         db.execSQL("CREATE TABLE tbl_departemen (kode varchar(255) PRIMARY KEY, nama varchar(255))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `tbl_detail_sales` (id INTEGER PRIMARY KEY, " +
-                "No_Transaksi varchar(255)," +
-                "Kode_Barang varchar(255)," +
-                "Nama_Barang varchar(255)," +
-                "Harga_Beli INTEGER," +
-                "Harga_Jual INTEGER," +
-                "Qty INTEGER," +
-                "Promosi varchar(255)," +
-                "Total_Harga INTEGER," +
-                "Kode_Cabang varchar(255)," +
-                "Jenis_Store varchar(255)," +
-                "Kode_Merk varchar(255)," +
                 "Kode_Departemen varchar(255)," +
                 "Departemen varchar(255)," +
-                "FOTO TEXT," +
+                "Qty_Daily INTEGER," +
+                "Total_Daily INTEGER," +
+                "Qty_Bulan INTEGER," +
+                "Total_Bulan INTEGER," +
+                "Bulan varchar(255)," +
+                "Tanggal DATE);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `tbl_detail_bestseller` (id INTEGER PRIMARY KEY, " +
+                "Kode_Departemen varchar(255)," +
+                "Kode_Barang varchar(255)," +
+                "qty INTEGER," +
+                "Foto TEXT," +
                 "Tanggal DATE);");
         //
         if (Build.VERSION.SDK_INT >= 21) {

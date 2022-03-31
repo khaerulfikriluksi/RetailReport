@@ -193,7 +193,29 @@ public class FDiscovery_Summary extends AppCompatActivity {
     }
 
     private void setValuedetail(String tanggal){
-        Cursor cr = db.rawQuery("",null);
+        ArrayList<String> Kode_Departemen = new ArrayList<>();
+        ArrayList<String> Departemen = new ArrayList<>();
+        ArrayList<String> Qty_Daily = new ArrayList<>();
+        ArrayList<String> Total_Daily = new ArrayList<>();
+        ArrayList<String> Qty_Bulan = new ArrayList<>();
+        ArrayList<String> Total_Bulan = new ArrayList<>();
+        ArrayList<String> Bulan = new ArrayList<>();
+        ArrayList<String> Tanggal = new ArrayList<>();
+        Cursor cr = db.rawQuery("SELECT * FROM tbl_detail_sales WHERE Tanggal='"+tanggal+"'",null);
+        if (cr.getCount()>0){
+            if (cr.moveToFirst()) {
+                do {
+                    Kode_Departemen.add(cr.getString(1));
+                    Departemen.add(cr.getString(1));
+                    Qty_Daily.add(cr.getString(1));
+                    Total_Daily.add(cr.getString(1));
+                    Qty_Bulan.add(cr.getString(1));
+                    Total_Bulan.add(cr.getString(1));
+                    Bulan.add(cr.getString(1));
+                    Tanggal.add(cr.getString(1));
+                } while (cr.moveToNext());
+            }
+        }
     }
 
     private void initializeComp(){
