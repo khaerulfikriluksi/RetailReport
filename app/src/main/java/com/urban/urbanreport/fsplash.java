@@ -171,6 +171,7 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
         db.execSQL("CREATE TABLE IF NOT EXISTS `tbl_detail_bestseller` (id INTEGER PRIMARY KEY, " +
                 "Kode_Departemen varchar(255)," +
                 "Kode_Barang varchar(255)," +
+                "Nama_Barang varchar(255)," +
                 "qty INTEGER," +
                 "Foto TEXT," +
                 "Tanggal DATE);");

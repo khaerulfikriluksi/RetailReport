@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,14 +58,18 @@ public class Home_recycle_adapter extends RecyclerView.Adapter<Home_recycle_adap
     private ArrayList<String> itemqty=new ArrayList<>();
     private ArrayList<String> urlgambar=new ArrayList<>();
     private ArrayList<String> stock=new ArrayList<>();
+    private Boolean stockVisible=true;
 
-    public Home_recycle_adapter(Context mContext, ArrayList<String> itemcode, ArrayList<String> itemname, ArrayList<String> itemqty, ArrayList<String> urlgambar, ArrayList<String> stock) {
+    public Home_recycle_adapter(Context mContext, ArrayList<String> itemcode, ArrayList<String> itemname, ArrayList<String> itemqty, ArrayList<String> urlgambar, ArrayList<String> stock, Boolean stockVisible) {
         this.mContext = mContext;
         this.itemcode = itemcode;
         this.itemname = itemname;
         this.itemqty = itemqty;
         this.urlgambar = urlgambar;
-        this.stock = stock;
+        this.stockVisible = stockVisible;
+        if (stockVisible==true) {
+            this.stock = stock;
+        }
     }
 
     public void replacedata(Context mContext, ArrayList<String> itemcode, ArrayList<String> itemname, ArrayList<String> itemqty, ArrayList<String> urlgambar, ArrayList<String> stock) {
@@ -102,7 +107,12 @@ public class Home_recycle_adapter extends RecyclerView.Adapter<Home_recycle_adap
         holder.hm_list_itemcode.setText(itemcode.get(position));
         holder.hm_list_itemname.setText(itemname.get(position));
         holder.hm_list_itemqty.setText(itemqty.get(position));
-        holder.hm_list_stock.setText(stock.get(position));
+        if (stockVisible==true) {
+            holder.hm_laystock.setVisibility(View.VISIBLE);
+            holder.hm_list_stock.setText(stock.get(position));
+        } else {
+            holder.hm_laystock.setVisibility(View.GONE);
+        }
         holder.CardRecycle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,11 +144,13 @@ public class Home_recycle_adapter extends RecyclerView.Adapter<Home_recycle_adap
 
         GlottieView hm_list_gambar;
         CardView CardRecycle;
+        LinearLayout hm_laystock;
         TextView hm_list_itemcode,hm_list_itemname,hm_list_itemqty,hm_list_stock;
 
         public ViewHolder (View view) {
             super(view);
             CardRecycle = (CardView) view.findViewById(R.id.CardRecycle);
+            hm_laystock = (LinearLayout) view.findViewById(R.id.hm_laystock);
             hm_list_gambar=(GlottieView) view.findViewById(R.id.hm_list_gambar);
             hm_list_itemcode=(TextView) view.findViewById(R.id.hm_list_itemcode);
             hm_list_itemname=(TextView) view.findViewById(R.id.hm_list_itemname);

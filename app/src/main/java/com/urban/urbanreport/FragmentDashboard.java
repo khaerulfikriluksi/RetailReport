@@ -199,10 +199,10 @@ public class FragmentDashboard extends Fragment {
                         @RequiresApi(api = Build.VERSION_CODES.R)
                         @Override
                         public void run() {
-                            Home_recycle_adapter recycle_adapter2 = new Home_recycle_adapter(getContext(),itemcode_daily,itemname_daily,itemqty_daily,urlgambar_daily,stock_daily);
+                            Home_recycle_adapter recycle_adapter2 = new Home_recycle_adapter(getContext(),itemcode_daily,itemname_daily,itemqty_daily,urlgambar_daily,stock_daily,true);
                             hm_recycle2.setLayoutManager(layoutManager2);
                             hm_recycle2.setAdapter(recycle_adapter2);
-                            Home_recycle_adapter recycle_adapter = new Home_recycle_adapter(getContext(),itemcode,itemname,itemqty,urlgambar,stock);
+                            Home_recycle_adapter recycle_adapter = new Home_recycle_adapter(getContext(),itemcode,itemname,itemqty,urlgambar,stock,true);
                             hm_recycle.setLayoutManager(layoutManager);
                             hm_recycle.setAdapter(recycle_adapter);
                         }
