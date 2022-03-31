@@ -216,6 +216,7 @@ public class FDiscovery_Summary extends AppCompatActivity {
                 } while (cr.moveToNext());
             }
         }
+
     }
 
     private void initializeComp(){
