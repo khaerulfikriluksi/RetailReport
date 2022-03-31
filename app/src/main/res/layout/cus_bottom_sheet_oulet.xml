@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cus_sls_bottomsheet"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottomsheet_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginLeft="180dp"
+            android:layout_marginRight="180dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/pink"/>
+
+        <RadioGroup
+            android:checkedButton="@+id/sls_daily"
+            android:id="@+id/sls_toggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/cust_off_switch"
+            android:orientation="horizontal">
+            <RadioButton
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="3dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:id="@+id/sls_daily"
+                android:background="@drawable/cust_on_switch"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Daily"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@drawable/control_switch_color_selector"/>
+            <RadioButton
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:id="@+id/sls_monthly"
+                android:background="@drawable/control_switch_background_selector_middle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Montly"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@drawable/control_switch_color_selector"/>
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="24dp"
+            android:id="@+id/sls_datefrom_head"
+            android:layout_marginRight="24dp"
+            app:expandedHintEnabled="false"
+            android:hint="From Date"
+            android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/sls_datefrom"
+                    android:layout_width="match_parent"
+                    android:paddingEnd="10dp"
+                    android:paddingLeft="15dp"
+                    android:text="2021-10-01"
+                    android:inputType="none"
+                    android:imeOptions="actionDone"
+                    android:gravity="center_vertical"
+                    android:layout_height="50dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:id="@+id/sls_dateto_head"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            app:expandedHintEnabled="false"
+            android:hint="To Date"
+            android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/sls_dateto"
+                    android:layout_width="match_parent"
+                    android:paddingEnd="10dp"
+                    android:paddingLeft="15dp"
+                    android:text="2021-10-01"
+                    android:imeOptions="actionDone"
+                    android:inputType="none"
+                    android:gravity="center_vertical"
+                    android:layout_height="50dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="24dp"
+            android:id="@+id/sls_spin_artikel_head"
+            android:layout_marginRight="24dp"
+            app:expandedHintEnabled="false"
+            android:hint="Articles"
+            android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/sls_spin_artikel"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="15dp"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:inputType="textCapCharacters"
+                    android:textAllCaps="true"
+                    android:completionThreshold="1"
+                    android:gravity="center_vertical"
+                    android:layout_height="50dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:id="@+id/sls_spin_departemen_head"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            app:expandedHintEnabled="false"
+            android:hint="Departement"
+            android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/sls_spin_departemen"
+                    android:layout_width="match_parent"
+                    android:imeOptions="actionDone"
+                    android:text="ALL"
+                    android:inputType="none"
+                    android:gravity="left"
+                    android:layout_height="50dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:id="@+id/sls_spin_store_head"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            app:expandedHintEnabled="false"
+            android:hint="Store"
+            android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/sls_spin_store"
+                    android:layout_width="match_parent"
+                    android:imeOptions="actionDone"
+                    android:text="ALL"
+                    android:inputType="none"
+                    android:gravity="left"
+                    android:layout_height="50dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:id="@+id/sls_spin_brand_head"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            app:expandedHintEnabled="false"
+            android:hint="Brand"
+            android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/sls_spin_brand"
+                    android:layout_width="match_parent"
+                    android:imeOptions="actionDone"
+                    android:text="ALL"
+                    android:inputType="none"
+                    android:gravity="left"
+                    android:layout_height="50dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:id="@+id/sls_spin_cabang_head"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            app:expandedHintEnabled="false"
+            android:hint="Branch"
+            android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/sls_spin_cabang"
+                    android:layout_width="match_parent"
+                    android:imeOptions="actionDone"
+                    android:text="ALL"
+                    android:inputType="none"
+                    android:gravity="left"
+                    android:layout_height="50dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            app:cardElevation="5dp"
+            app:cardCornerRadius="20dp"
+            android:layout_height="40dp">
+
+                <Button
+                    android:id="@+id/sls_bsearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/pink"
+                    android:gravity="center"
+                    android:text="Get Data"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@null" />
+
+        </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

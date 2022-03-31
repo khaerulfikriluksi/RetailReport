@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Urban Report</string>
+    <string name="best_seller_underline"><u>Best Seller</u></string>
+    <string name="more_underline"><u>Sales Detail</u></string>
+    <string name="best_seller_hide"><u>\u003c\u003c Hide Detail</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hm_layexpand"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="left"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="Best Seller"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/warna_text"
+                android:textSize="19dp" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:checkedButton="@+id/hm_checker_monthly"
+            android:id="@+id/hm_checker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/cust_off_switch2"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="3dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:id="@+id/hm_checker_monthly"
+                android:background="@drawable/cust_on_switch2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Monthly"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@drawable/control_switch_color_selection2"/>
+
+            <RadioButton
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:id="@+id/hm_checker_daily"
+                android:background="@drawable/control_switch_background_selector_middle2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Daily"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@drawable/control_switch_color_selection2"/>
+
+        </RadioGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hm_recycle"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="247dp">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hm_recycle2"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="247dp">
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+</RelativeLayout>

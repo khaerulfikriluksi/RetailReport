@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FDetail_ViewPager">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/pgr_toolbar"
+        android:background="@color/sls_header1"
+        android:layout_width="match_parent"
+        app:titleTextColor="@color/pink"
+        app:title="Detail Data"
+        app:navigationIcon="@drawable/ico_kembali"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <LinearLayout
+        android:background="@color/sls_header1"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="60dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.tabs.TabLayout
+                android:layout_alignParentLeft="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/pgr_bmore"
+                android:id="@+id/pgr_tab"
+                app:tabMode="scrollable"
+                app:tabTextColor="@color/white"
+                app:tabIndicatorColor="@color/ungu"
+                app:tabSelectedTextColor="@color/ungu"
+                android:background="@color/sls_header1"/>
+
+            <ImageButton
+                android:id="@+id/pgr_bmore"
+                android:layout_alignParentRight="true"
+                android:layout_width="50dp"
+                android:scaleType="center"
+                android:src="@drawable/ico_more_vert_white"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pgr_viewpager"/>
+
+</LinearLayout>
