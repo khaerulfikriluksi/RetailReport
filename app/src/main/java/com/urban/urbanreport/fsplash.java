@@ -173,7 +173,8 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
                 "Kode_Merk varchar(255)," +
                 "Kode_Departemen varchar(255)," +
                 "Departemen varchar(255)," +
-                "FOTO TEXT);");
+                "FOTO TEXT," +
+                "Tanggal DATE);");
         //
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();

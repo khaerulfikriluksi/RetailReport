@@ -804,13 +804,175 @@
                                 </androidx.cardview.widget.CardView>
 
                                 <TextView
+                                    android:id="@+id/dscsls_deptext"
                                     android:layout_width="match_parent"
                                     android:fontFamily="@font/roboto_bold"
                                     android:text="Sales by Departement"
                                     android:textSize="15dp"
                                     android:layout_height="wrap_content"/>
 
+                                <LinearLayout
+                                    android:id="@+id/dscsls_loading1"
+                                    android:layout_width="match_parent"
+                                    android:orientation="vertical"
+                                    android:layout_height="wrap_content">
+
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="match_parent"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_height="wrap_content"
+                                        app:cardCornerRadius="20dp"
+                                        app:cardElevation="2dp">
+
+                                        <LinearLayout
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:background="@color/putih_pucat"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:paddingRight="16dp"
+                                            android:paddingLeft="16dp">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="8dp"
+                                                android:orientation="horizontal">
+
+                                                <androidx.cardview.widget.CardView
+                                                    android:layout_width="160dp"
+                                                    android:layout_height="90dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:layout_weight="1"
+                                                    app:cardElevation="0dp"
+                                                    app:cardCornerRadius="8dp">
+
+                                                    <com.facebook.shimmer.ShimmerFrameLayout
+                                                        android:id="@+id/dscsls_shimer11"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content">
+
+                                                        <RelativeLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:padding="8dp">
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="30dp"
+                                                                android:layout_alignParentTop="true"
+                                                                android:layout_gravity="center"
+                                                                android:background="#E7E7E7"
+                                                                android:textSize="12dp" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_alignParentTop="true"
+                                                                android:layout_gravity="center"
+                                                                android:layout_marginTop="50dp"
+                                                                android:background="#E7E7E7"
+                                                                android:textSize="12dp" />
+                                                        </RelativeLayout>
+                                                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                                                </androidx.cardview.widget.CardView>
+                                                <androidx.cardview.widget.CardView
+                                                    android:layout_width="160dp"
+                                                    android:layout_height="90dp"
+                                                    android:layout_marginLeft="18dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:layout_weight="1"
+                                                    app:cardElevation="0dp"
+                                                    app:cardCornerRadius="8dp">
+
+                                                    <com.facebook.shimmer.ShimmerFrameLayout
+                                                        android:id="@+id/dscsls_shimer22"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content">
+
+                                                        <RelativeLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:padding="8dp">
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="30dp"
+                                                                android:layout_alignParentTop="true"
+                                                                android:layout_gravity="center"
+                                                                android:background="#E7E7E7"
+                                                                android:textSize="12dp" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_alignParentTop="true"
+                                                                android:layout_gravity="center"
+                                                                android:layout_marginTop="50dp"
+                                                                android:background="#E7E7E7"
+                                                                android:textSize="12dp" />
+                                                        </RelativeLayout>
+                                                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                                                </androidx.cardview.widget.CardView>
+
+                                            </LinearLayout>
+
+                                            <com.facebook.shimmer.ShimmerFrameLayout
+                                                android:id="@+id/dscsls_shimer33"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:orientation="vertical"
+                                                    android:layout_height="wrap_content">
+
+                                                        <TextView
+                                                            android:layout_marginTop="8dp"
+                                                            android:background="#E7E7E7"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"/>
+
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginTop="8dp"
+                                                            android:orientation="horizontal">
+                                                            <ImageView
+                                                                android:layout_width="160dp"
+                                                                android:layout_height="180dp"
+                                                                android:layout_marginTop="5dp"
+                                                                android:layout_marginBottom="5dp"
+                                                                android:background="#E7E7E7"/>
+                                                            <ImageView
+                                                                android:layout_width="160dp"
+                                                                android:layout_height="180dp"
+                                                                android:layout_marginLeft="18dp"
+                                                                android:layout_marginTop="5dp"
+                                                                android:layout_marginBottom="5dp"
+                                                                android:background="#E7E7E7"/>
+
+                                                        </LinearLayout>
+                                                </LinearLayout>
+
+                                            </com.facebook.shimmer.ShimmerFrameLayout>
+
+                                        </LinearLayout>
+
+                                    </androidx.cardview.widget.CardView>
+
+                                </LinearLayout>
+
                                 <ListView
+                                    android:id="@+id/dsc_list_departemen"
+                                    android:visibility="gone"
                                     android:layout_marginTop="8dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"/>

@@ -24,6 +24,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,14 +63,16 @@ import java.util.Set;
 
 public class FDiscovery_Summary extends AppCompatActivity {
 
-    private LinearLayout dscsls_utama,dscsls_loading;
+    private LinearLayout dscsls_utama,dscsls_loading, dscsls_loading1;
     private ShimmerFrameLayout dscsls_shimer1,dscsls_shimer2,dscsls_shimer3,
             dscsls_shimer4,dscsls_shimer5,dscsls_shimer6,
-            dscsls_shimer7,dscsls_shimer8;
+            dscsls_shimer7,dscsls_shimer8, dscsls_shimer11,
+            dscsls_shimer22,dscsls_shimer33;
     private Boolean run=false;
     private String API,tanggal, bulan, tanggalfull, bulanfull;
     private SQLiteDatabase db;
     private Context context;
+    private ListView dsc_list_departemen;
     private TextView dscsls_lastupdate, dscsls_Ldayly, dscsls_lsumdaily,
             dscsls_Lmonthly, dscsls_lsummonthly, dscsls_Ldayly_footwear,
             dscsls_lsumdaily_footwear, dscsls_Lmonthly_footwear,dscsls_lsummonthly_footwear,
@@ -78,7 +81,7 @@ public class FDiscovery_Summary extends AppCompatActivity {
             dscsls_Lmonthly_online, dsc_lsummonthly_online, dscsls_lsumdaily_qty,
             dscsls_lsummonthly_qty, dscsls_lsumdaily_footwear_qty, dscsls_lsummonthly_footwear_qty,
             dscsls_lsumdaily_clothing_qty, dsc_lsummonthly_clothing_qty, dscsls_lsumdaily_online_qty,
-            dsc_lsummonthly_online_qty;
+            dsc_lsummonthly_online_qty, dscsls_deptext;
     private Map<String, String> dataCache = new HashMap<String, String>();
     private SharedPreferences storageCache;
     private SharedPreferences.Editor CacheEditor;
@@ -189,9 +192,14 @@ public class FDiscovery_Summary extends AppCompatActivity {
         dsc_lsummonthly_online_qty.setText(storageCache.getString("monthly_online_qty_"+tgl,""));
     }
 
+    private void setValuedetail(String tanggal){
+        Cursor cr = db.rawQuery("",null);
+    }
+
     private void initializeComp(){
         dscsls_utama = (LinearLayout) findViewById(R.id.dscsls_utama);
         dscsls_loading = (LinearLayout) findViewById(R.id.dscsls_loading);
+        dscsls_loading1 = (LinearLayout) findViewById(R.id.dscsls_loading1);
         dscsls_shimer1 = (ShimmerFrameLayout) findViewById(R.id.dscsls_shimer1);
         dscsls_shimer2 = (ShimmerFrameLayout) findViewById(R.id.dscsls_shimer2);
         dscsls_shimer3 = (ShimmerFrameLayout) findViewById(R.id.dscsls_shimer3);
@@ -200,6 +208,10 @@ public class FDiscovery_Summary extends AppCompatActivity {
         dscsls_shimer6 = (ShimmerFrameLayout) findViewById(R.id.dscsls_shimer6);
         dscsls_shimer7 = (ShimmerFrameLayout) findViewById(R.id.dscsls_shimer7);
         dscsls_shimer8 = (ShimmerFrameLayout) findViewById(R.id.dscsls_shimer8);
+        dscsls_shimer11 = (ShimmerFrameLayout) findViewById(R.id.dscsls_shimer11);
+        dscsls_shimer22 = (ShimmerFrameLayout) findViewById(R.id.dscsls_shimer22);
+        dscsls_shimer33 = (ShimmerFrameLayout) findViewById(R.id.dscsls_shimer33);
+        dscsls_deptext = (TextView) findViewById(R.id.dscsls_deptext);
         dscsls_lastupdate = (TextView) findViewById(R.id.dscsls_lastupdate);
         dscsls_Ldayly = (TextView) findViewById(R.id.dscsls_Ldayly);
         dscsls_lsumdaily = (TextView) findViewById(R.id.dscsls_lsumdaily);
@@ -229,6 +241,22 @@ public class FDiscovery_Summary extends AppCompatActivity {
         dsc_lsummonthly_clothing_qty = (TextView) findViewById(R.id.dsc_lsummonthly_clothing_qty);
         dscsls_lsumdaily_online_qty = (TextView) findViewById(R.id.dscsls_lsumdaily_online_qty);
         dsc_lsummonthly_online_qty = (TextView) findViewById(R.id.dsc_lsummonthly_online_qty);
+    }
+
+    private void shimerdetail(Boolean toogle) {
+        if (toogle==true) {
+            dsc_list_departemen.setVisibility(View.GONE);
+            dscsls_loading1.setVisibility(View.VISIBLE);
+            dscsls_shimer11.startShimmerAnimation();
+            dscsls_shimer22.startShimmerAnimation();
+            dscsls_shimer33.startShimmerAnimation();
+        } else {
+            dsc_list_departemen.setVisibility(View.VISIBLE);
+            dscsls_loading1.setVisibility(View.GONE);
+            dscsls_shimer11.stopShimmerAnimation();
+            dscsls_shimer22.stopShimmerAnimation();
+            dscsls_shimer33.stopShimmerAnimation();
+        }
     }
 
     private void startShimer(Boolean toogle){
