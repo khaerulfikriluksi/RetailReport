@@ -162,17 +162,35 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
         db.execSQL("CREATE TABLE IF NOT EXISTS `tbl_detail_sales` (id INTEGER PRIMARY KEY, " +
                 "Kode_Departemen varchar(255)," +
                 "Departemen varchar(255)," +
-                "Qty_Daily INTEGER," +
-                "Total_Daily INTEGER," +
-                "Qty_Bulan INTEGER," +
-                "Total_Bulan INTEGER," +
+                "Qty_Daily varchar(255)," +
+                "Total_Daily varchar(255)," +
+                "Qty_Bulan varchar(255)," +
+                "Total_Bulan varchar(255)," +
+                "Bulan varchar(255)," +
+                "Tanggal DATE);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `tbl_subdetail_sales` (id INTEGER PRIMARY KEY, " +
+                "Jenis_Store varchar(255)," +
+                "Kode_Departemen varchar(255)," +
+                "Departemen varchar(255)," +
+                "Qty_Daily varchar(255)," +
+                "Total_Daily varchar(255)," +
+                "Qty_Bulan varchar(255)," +
+                "Total_Bulan varchar(255)," +
                 "Bulan varchar(255)," +
                 "Tanggal DATE);");
         db.execSQL("CREATE TABLE IF NOT EXISTS `tbl_detail_bestseller` (id INTEGER PRIMARY KEY, " +
                 "Kode_Departemen varchar(255)," +
                 "Kode_Barang varchar(255)," +
                 "Nama_Barang varchar(255)," +
-                "qty INTEGER," +
+                "qty varchar(255)," +
+                "Foto TEXT," +
+                "Tanggal DATE);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `tbl_subdetail_bestseller` (id INTEGER PRIMARY KEY, " +
+                "Jenis_Store varchar(255)," +
+                "Kode_Departemen varchar(255)," +
+                "Kode_Barang varchar(255)," +
+                "Nama_Barang varchar(255)," +
+                "qty varchar(255)," +
                 "Foto TEXT," +
                 "Tanggal DATE);");
         //

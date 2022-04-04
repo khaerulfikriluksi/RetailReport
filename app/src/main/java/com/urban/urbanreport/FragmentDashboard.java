@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,7 +56,6 @@ import com.urban.urbanreport.CustomClass.Home_recycle_adapter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -68,18 +66,6 @@ import java.util.Map;
 
 public class FragmentDashboard extends Fragment {
 
-    private ArrayList<String> itemcode=new ArrayList<>();
-    private ArrayList<String> itemname=new ArrayList<>();
-    private ArrayList<String> itemqty=new ArrayList<>();
-    private ArrayList<String> urlgambar=new ArrayList<>();
-    private ArrayList<String> stock=new ArrayList<>();
-    //
-    private ArrayList<String> itemcode_daily=new ArrayList<>();
-    private ArrayList<String> itemname_daily=new ArrayList<>();
-    private ArrayList<String> itemqty_daily=new ArrayList<>();
-    private ArrayList<String> urlgambar_daily=new ArrayList<>();
-    private ArrayList<String> stock_daily=new ArrayList<>();
-    //
     private TextView LGreetings,lsumdaily,lsummonthly,
             Ldayly,Lmonthly,lkoneksi,Ldayly_footwear
             ,lsumdaily_footwear,Lmonthly_footwear,
@@ -99,7 +85,6 @@ public class FragmentDashboard extends Fragment {
     private CardView hm_card_expand;
 //    private RadioGroup hm_checker;
 //    private RadioButton hm_checker_monthly,hm_checker_daily;
-    private AlertDialog show;
     private AlertDialog.Builder builder;
     private Boolean run2=true;
     private Boolean run3=false,firstrun=true;
@@ -184,61 +169,8 @@ public class FragmentDashboard extends Fragment {
             hm_bexpand.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    builder = new AlertDialog.Builder(context);
-                    LayoutInflater inflater = getActivity().getLayoutInflater();
-                    View view = inflater.inflate(R.layout.cus_popup_bestseller, null);
-                    RadioGroup hm_checker = (RadioGroup) view.findViewById(R.id.hm_checker);
-                    RadioButton hm_checker_monthly = (RadioButton) view.findViewById(R.id.hm_checker_monthly),
-                            hm_checker_daily = (RadioButton) view.findViewById(R.id.hm_checker_daily);
-                    RecyclerView hm_recycle = (RecyclerView) view.findViewById(R.id.hm_recycle),
-                            hm_recycle2 = (RecyclerView) view.findViewById(R.id.hm_recycle2);
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
-                    LinearLayoutManager layoutManager2 = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
-
-                    new Thread(new Runnable() {
-                        @RequiresApi(api = Build.VERSION_CODES.R)
-                        @Override
-                        public void run() {
-                            Home_recycle_adapter recycle_adapter2 = new Home_recycle_adapter(getContext(),itemcode_daily,itemname_daily,itemqty_daily,urlgambar_daily,stock_daily,true);
-                            hm_recycle2.setLayoutManager(layoutManager2);
-                            hm_recycle2.setAdapter(recycle_adapter2);
-                            Home_recycle_adapter recycle_adapter = new Home_recycle_adapter(getContext(),itemcode,itemname,itemqty,urlgambar,stock,true);
-                            hm_recycle.setLayoutManager(layoutManager);
-                            hm_recycle.setAdapter(recycle_adapter);
-                        }
-                    }).start();
-                    if (Cache.getInstance().isDailyrecycle()==true) {
-                        hm_recycle.setVisibility(View.GONE);
-                        hm_recycle2.setVisibility(View.VISIBLE);
-                        hm_checker_daily.setChecked(true);
-                        hm_checker_monthly.setChecked(false);
-                    } else {
-                        hm_recycle.setVisibility(View.VISIBLE);
-                        hm_recycle2.setVisibility(View.GONE);
-                        hm_checker_daily.setChecked(false);
-                        hm_checker_monthly.setChecked(true);
-                    }
-                    hm_checker.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(RadioGroup group, int checkedId) {
-                            if (checkedId == R.id.hm_checker_daily) {
-                                hm_recycle2.setVisibility(View.VISIBLE);
-                                hm_recycle.setVisibility(View.GONE);
-                            } else {
-                                hm_recycle2.setVisibility(View.GONE);
-                                hm_recycle.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    });
-                    builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            show.dismiss();
-                        }
-                    });
-                    builder.setCancelable(false);
-                    builder.setView(view);
-                    show=builder.show();
+                    Intent formku = new Intent(getContext(), FPopupBestSeller.class);
+                    startActivity(formku);
                 }
             });
 
@@ -449,18 +381,6 @@ public class FragmentDashboard extends Fragment {
                     lsumdaily_qty.setText(Cache.getInstance().getDataList("sumdaily_qty"));
                     lsummonthly.setText(Cache.getInstance().getDataList("summonthly"));
                     lsummonthly_qty.setText(Cache.getInstance().getDataList("summonthly_qty"));
-                    //
-                    itemcode_daily = Cache.getInstance().getArrayItemCode_daily();
-                    itemname_daily = Cache.getInstance().getArrayItemName_daily();
-                    itemqty_daily = Cache.getInstance().getArrayItemQty_daily();
-                    urlgambar_daily = Cache.getInstance().getArrayurlgambar_daily();
-                    stock_daily = Cache.getInstance().getArraystock_daily();
-                    //
-                    itemcode = Cache.getInstance().getArrayItemCode();
-                    itemname = Cache.getInstance().getArrayItemName();
-                    itemqty = Cache.getInstance().getArrayItemQty();
-                    urlgambar = Cache.getInstance().getArrayurlgambar();
-                    stock = Cache.getInstance().getArraystock();
 //                    recycle_adapter = new Home_recycle_adapter(context,itemcode,itemname,itemqty,urlgambar,stock);
 //                    recycle_adapter2 = new Home_recycle_adapter(context,itemcode_daily,itemname_daily,itemqty_daily,urlgambar_daily,stock_daily);
                 } else {
@@ -612,7 +532,7 @@ public class FragmentDashboard extends Fragment {
             String tanggal=simpleDateFormat.format(calendar.getTime());
             String bulan=simpleDateFormat4.format(calendar.getTime());
             String waktu = simpleDateFormat5.format(calendar.getTime());
-            if (urlgambar.size()>0 || urlgambar_daily.size()>0) {
+            if (Cache.getInstance().getArrayurlgambar().size()>0 || Cache.getInstance().getArrayurlgambar_daily().size()>0) {
                 hm_bexpand.setVisibility(View.VISIBLE);
             } else {
                 hm_bexpand.setVisibility(View.INVISIBLE);
@@ -732,25 +652,9 @@ public class FragmentDashboard extends Fragment {
                                         Cache.getInstance().putArrayItemQty_daily(qty2);
                                         Cache.getInstance().putArrayUrlGambar_daily(url2);
                                         Cache.getInstance().putArrayStock_daily(stk2);
-                                        //
-                                        itemcode_daily=kd2;
-                                        itemname_daily=nm2;
-                                        itemqty_daily=qty2;
-                                        urlgambar_daily=url2;
-                                        stock_daily=stk2;
-                                        //
-                                        itemcode=kd1;
-                                        itemname=nm1;
-                                        itemqty=qty1;
-                                        urlgambar=url1;
-                                        stock=stk1;
 //                                        recycle_adapter = new Home_recycle_adapter(context,itemcode,itemname,itemqty,urlgambar,stock);
 //                                        recycle_adapter2 = new Home_recycle_adapter(context,itemcode_daily,itemname_daily,itemqty_daily,urlgambar_daily,stock_daily);
                                         hm_bexpand.setVisibility(View.VISIBLE);
-                                        if (show != null && show.isShowing()) {
-                                            show.dismiss();
-                                            hm_bexpand.callOnClick();
-                                        }
                                     }
                                     //
                                     Ldayly.setText(Cache.getInstance().getDataList("daily"));

@@ -227,7 +227,7 @@ public class Cache {
             datanya="";
         }
         try {
-            Log.v("Get : ", this.dataList.get(key));
+//            Log.v("Get : ", this.dataList.get(key));
         } catch (Exception e) {
             e.printStackTrace();
         }
