@@ -62,51 +62,51 @@ public class Detail_Sales_Adapter extends BaseAdapter {
     }
 
     public View getView(final int position, View view, ViewGroup parent) {
-        view = inflater.inflate(R.layout.adapter_sales_detail, parent, false);
-        //
-        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false);
-        TextView detsls_departemen = (TextView) view.findViewById(R.id.detsls_departemen),
-                detsls_Ldayly = (TextView) view.findViewById(R.id.detsls_Ldayly),
-                detsls_Ldayly_sum = (TextView) view.findViewById(R.id.detsls_Ldayly_sum),
-                detsls_Ldayly_qty = (TextView) view.findViewById(R.id.detsls_Ldayly_qty),
-                detsls_Lmonthly = (TextView) view.findViewById(R.id.detsls_Lmonthly),
-                detsls_Lmonthly_sum = (TextView) view.findViewById(R.id.detsls_Lmonthly_sum),
-                detsls_Lmonthly_qty = (TextView) view.findViewById(R.id.detsls_Lmonthly_qty),
-                detsls_bestlabel = (TextView) view.findViewById(R.id.detsls_bestlabel);
-        RecyclerView detsls_recycle = (RecyclerView) view.findViewById(R.id.detsls_recycle);
-        //
-        detsls_departemen.setTag(position);
-        detsls_Ldayly.setTag(position);
-        detsls_Ldayly_sum.setTag(position);
-        detsls_Ldayly_qty.setTag(position);
-        detsls_Lmonthly.setTag(position);
-        detsls_Lmonthly_sum.setTag(position);
-        detsls_Lmonthly_qty.setTag(position);
-        detsls_bestlabel.setTag(position);
-        detsls_recycle.setTag(position);
-        //
-        detsls_departemen.setText(departemen.get(position));
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date date = format.parse(daily.get(position));
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-            detsls_Ldayly.setText(dateFormat.format(date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        detsls_Ldayly_sum.setText(daily_sum.get(position));
-        detsls_Ldayly_qty.setText(daily_qty.get(position));
-        detsls_Lmonthly.setText(monthly.get(position));
-        detsls_Lmonthly_sum.setText(monthly_sum.get(position));
-        detsls_Lmonthly_qty.setText(monthly_qty.get(position));
-        detsls_bestlabel.setText("Best Seller "+monthly.get(position));
-        detsls_recycle.setLayoutManager(layoutManager);
-        ArrayList<String> itemcode = new ArrayList<>();
-        ArrayList<String> itemname = new ArrayList<>();
-        ArrayList<String> itemqty = new ArrayList<>();
-        ArrayList<String> urlgambar = new ArrayList<>();
-        ArrayList<String> stock = new ArrayList<>();
         if (isSubdetail==false) {
+            view = inflater.inflate(R.layout.adapter_sales_detail, parent, false);
+            //
+            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+            TextView detsls_departemen = (TextView) view.findViewById(R.id.detsls_departemen),
+                    detsls_Ldayly = (TextView) view.findViewById(R.id.detsls_Ldayly),
+                    detsls_Ldayly_sum = (TextView) view.findViewById(R.id.detsls_Ldayly_sum),
+                    detsls_Ldayly_qty = (TextView) view.findViewById(R.id.detsls_Ldayly_qty),
+                    detsls_Lmonthly = (TextView) view.findViewById(R.id.detsls_Lmonthly),
+                    detsls_Lmonthly_sum = (TextView) view.findViewById(R.id.detsls_Lmonthly_sum),
+                    detsls_Lmonthly_qty = (TextView) view.findViewById(R.id.detsls_Lmonthly_qty),
+                    detsls_bestlabel = (TextView) view.findViewById(R.id.detsls_bestlabel);
+            RecyclerView detsls_recycle = (RecyclerView) view.findViewById(R.id.detsls_recycle);
+            //
+            detsls_departemen.setTag(position);
+            detsls_Ldayly.setTag(position);
+            detsls_Ldayly_sum.setTag(position);
+            detsls_Ldayly_qty.setTag(position);
+            detsls_Lmonthly.setTag(position);
+            detsls_Lmonthly_sum.setTag(position);
+            detsls_Lmonthly_qty.setTag(position);
+            detsls_bestlabel.setTag(position);
+            detsls_recycle.setTag(position);
+            //
+            detsls_departemen.setText(departemen.get(position));
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date date = format.parse(daily.get(position));
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+                detsls_Ldayly.setText(dateFormat.format(date));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            detsls_Ldayly_sum.setText(daily_sum.get(position));
+            detsls_Ldayly_qty.setText(daily_qty.get(position));
+            detsls_Lmonthly.setText(monthly.get(position));
+            detsls_Lmonthly_sum.setText(monthly_sum.get(position));
+            detsls_Lmonthly_qty.setText(monthly_qty.get(position));
+            detsls_bestlabel.setText("Best Seller " + monthly.get(position));
+            detsls_recycle.setLayoutManager(layoutManager);
+            ArrayList<String> itemcode = new ArrayList<>();
+            ArrayList<String> itemname = new ArrayList<>();
+            ArrayList<String> itemqty = new ArrayList<>();
+            ArrayList<String> urlgambar = new ArrayList<>();
+            ArrayList<String> stock = new ArrayList<>();
             Cursor crx = db.rawQuery("SELECT * FROM tbl_detail_bestseller WHERE `Kode_Departemen`='" + kd_departemen.get(position) + "' AND `Tanggal`='" + daily.get(position) + "'", null);
             if (crx.getCount() > 0) {
                 if (crx.moveToFirst()) {
@@ -122,20 +122,7 @@ public class Detail_Sales_Adapter extends BaseAdapter {
                 detsls_recycle.setAdapter(recycle_adapter);
             }
         } else {
-            Cursor cr = db.rawQuery("SELECT * FROM tbl_subdetail_bestseller WHERE `Kode_Departemen`='" + kd_departemen.get(position) + "' AND `Tanggal`='" + daily.get(position) + "' AND Jenis_Store='"+jenis_store+"'", null);
-            if (cr.getCount() > 0) {
-                if (cr.moveToFirst()) {
-                    do {
-                        itemcode.add(cr.getString(3));
-                        itemname.add(cr.getString(4));
-                        itemqty.add(cr.getString(5));
-                        urlgambar.add(cr.getString(6));
-                        stock.add("");
-                    } while (cr.moveToNext());
-                }
-                Home_recycle_adapter recycle_adapter = new Home_recycle_adapter(mContext, itemcode, itemname, itemqty, urlgambar, stock, false);
-                detsls_recycle.setAdapter(recycle_adapter);
-            }
+            view = inflater.inflate(R.layout.adapter_subdetail, parent, false);
         }
         return view;
     }

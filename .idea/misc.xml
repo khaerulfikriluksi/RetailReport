@@ -6,8 +6,10 @@
         <entry key="..\:/Android Studio/Project/UrbanReport/app/src/main/res/drawable/round_blue.xml" value="0.156" />
         <entry key="..\:/Android Studio/Project/UrbanReport/app/src/main/res/drawable/round_white.xml" value="0.156" />
         <entry key="..\:/Android Studio/Project/UrbanReport/app/src/main/res/layout/adapter_detail_bestseller.xml" value="0.209375" />
+        <entry key="..\:/Android Studio/Project/UrbanReport/app/src/main/res/layout/adapter_fartikel.xml" value="0.209375" />
         <entry key="..\:/Android Studio/Project/UrbanReport/app/src/main/res/layout/adapter_recycleview_fhome.xml" value="0.5" />
         <entry key="..\:/Android Studio/Project/UrbanReport/app/src/main/res/layout/adapter_sales_detail.xml" value="0.33" />
+        <entry key="..\:/Android Studio/Project/UrbanReport/app/src/main/res/layout/adapter_subdetail.xml" value="0.33" />
         <entry key="..\:/Android Studio/Project/UrbanReport/app/src/main/res/layout/cus_popup_bestseller.xml" value="0.209375" />
         <entry key="..\:/Android Studio/Project/UrbanReport/app/src/main/res/layout/cus_popup_newupdate.xml" value="0.5" />
         <entry key="..\:/Android Studio/Project/UrbanReport/app/src/main/res/layout/fartikel.xml" value="0.209375" />
