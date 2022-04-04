@@ -24,6 +24,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -98,6 +99,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -111,7 +113,7 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
 //    String PublicIP="http://103.112.139.155/RetailReport/dashboard.php";
 //    String PublicIP="http://192.168.1.11/RetailReport/dashboard.php";
 //    String PublicIP="http://5a98-103-112-139-153.ngrok.io";
-    String APIget;
+    String APIget,tanggal;
     DatabaseHelper module;
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -157,8 +159,17 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
         db = SQLiteDatabase.openDatabase("data/data/com.urban.urbanreport/databases/report.db", null,
                 SQLiteDatabase.OPEN_READWRITE);
         db.execSQL("delete from tbl_api");
-        db.execSQL("DROP TABLE IF EXISTS `tbl_departemen`");
-        db.execSQL("CREATE TABLE tbl_departemen (kode varchar(255) PRIMARY KEY, nama varchar(255))");
+//        db.execSQL("DROP TABLE IF EXISTS `tbl_departemen`");
+        db.execSQL("CREATE TABLE IF NOT EXISTS tbl_departemen (kode varchar(255) PRIMARY KEY, nama varchar(255), tanggal varchar(255))");
+         //
+        try {
+            db.execSQL("ALTER TABLE tbl_artikel ADD tanggal varchar(255);");
+            db.execSQL("ALTER TABLE tbl_promosi ADD tanggal varchar(255);");
+            db.execSQL("ALTER TABLE tbl_cabang ADD tanggal varchar(255);");
+            db.execSQL("ALTER TABLE tbl_departemen ADD tanggal varchar(255);");
+        } catch (SQLiteException ex) {
+
+        }
         db.execSQL("CREATE TABLE IF NOT EXISTS `tbl_detail_sales` (id INTEGER PRIMARY KEY, " +
                 "Kode_Departemen varchar(255)," +
                 "Departemen varchar(255)," +
@@ -576,6 +587,7 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
         db.execSQL("DELETE FROM tbl_cabang");
         db.execSQL("DELETE FROM tbl_artikel");
         db.execSQL("DELETE FROM tbl_promosi");
+        db.execSQL("DELETE FROM tbl_departemen");
         Log.v("API",APIget);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, APIget,
                 new Response.Listener<String>() {
@@ -596,8 +608,8 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
                                     String jenisstorecb = row.getString("jenis_store");
                                     String jeniscb = row.getString("jenis_cabang");
                                     String brandcb = row.getString("brand_cabang");
-                                    String QryCabang = "INSERT INTO tbl_cabang ('kode','nama','alias','jenis_store','jenis_cabang','brand_cabang') " +
-                                            "VALUES('" + kodecb + "','" + namacb + "','" + aliascb + "','" + jenisstorecb + "','" + jeniscb + "','" + brandcb + "');";
+                                    String QryCabang = "INSERT INTO tbl_cabang ('kode','nama','alias','jenis_store','jenis_cabang','brand_cabang','tanggal') " +
+                                            "VALUES('" + kodecb + "','" + namacb + "','" + aliascb + "','" + jenisstorecb + "','" + jeniscb + "','" + brandcb + "','"+tanggal+"');";
                                     db.execSQL(QryCabang);
                                 }
                                 JSONArray jsonArray1 = obj.getJSONArray("result_merk");
@@ -606,8 +618,8 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
                                     String kodeart = row.getString("kode");
                                     String namart = row.getString("nama");
                                     String desart = row.getString("deskripsi");
-                                    String qryart = "INSERT INTO tbl_artikel ('kode','nama','deskripsi') " +
-                                            "VALUES('" + kodeart + "','" + namart + "','" + desart + "');";
+                                    String qryart = "INSERT INTO tbl_artikel ('kode','nama','deskripsi','tanggal') " +
+                                            "VALUES('" + kodeart + "','" + namart + "','" + desart + "','"+tanggal+"');";
                                     db.execSQL(qryart);
                                 }
                                 JSONArray jsonArray2 = obj.getJSONArray("result_departemen");
@@ -615,8 +627,8 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
                                     JSONObject row = jsonArray2.getJSONObject(pos2);
                                     String kodepro = row.getString("kode");
                                     String namapro = row.getString("nama");
-                                    String qrypro = "INSERT INTO tbl_departemen ('kode','nama') " +
-                                            "VALUES('" + kodepro + "','" + namapro + "');";
+                                    String qrypro = "INSERT INTO tbl_departemen ('kode','nama','tanggal') " +
+                                            "VALUES('" + kodepro + "','" + namapro + "','"+tanggal+"');";
                                     db.execSQL(qrypro);
                                 }
                                 Cursor cr1 = db.rawQuery("SELECT * FROM tbl_cabang", null);
@@ -934,7 +946,60 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
             });
             builder.show();
         } else {
-            get();
+            int A=0,B=0,C=0;
+            final Calendar calendar = Calendar.getInstance();
+            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            tanggal=simpleDateFormat.format(calendar.getTime());
+            Cursor a = db.rawQuery("SELECT * FROM tbl_cabang where tanggal='"+tanggal+"'",null);
+            a.moveToFirst();
+            A=a.getCount();
+            Cursor b = db.rawQuery("SELECT * FROM tbl_artikel where tanggal='"+tanggal+"'",null);
+            b.moveToFirst();
+            B=b.getCount();
+            Cursor c = db.rawQuery("SELECT * FROM tbl_departemen where tanggal='"+tanggal+"'",null);
+            c.moveToFirst();
+            C=c.getCount();
+            if (A>=1 && B>=1 && C>=1) {
+                ConstraintLayout bg;
+                bg = (ConstraintLayout) findViewById(R.id.splash_parent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    int cx = bg.getWidth();
+                    int cy = 0;
+                    float finalRadius = Math.max(bg.getWidth(), bg.getHeight());
+                    Animator circularReveal = ViewAnimationUtils.createCircularReveal(bg, cx, cy, finalRadius, 0);
+                    circularReveal.addListener(new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animator) {
+                            Intent formku = new Intent(fsplash.this, FDashboardMenu.class);
+                            startActivity(formku);
+                            finish();
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            bg.setVisibility(View.INVISIBLE);
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animator) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animator) {
+
+                        }
+                    });
+                    circularReveal.setDuration(500);
+                    circularReveal.start();
+                } else {
+                    Intent formku = new Intent(fsplash.this, FDashboardMenu.class);
+                    startActivity(formku);
+                    finish();
+                }
+            } else {
+                get();
+            }
         }
     }
 

@@ -78,21 +78,41 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <toan.android.floatingactionmenu.FloatingActionsMenu
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
         android:baselineAlignBottom="false"
-        android:backgroundTint="@color/pink"
-        android:id="@+id/sls_get"
-        android:clickable="true"
-        app:tint="@null"
-        android:src="@drawable/ico_filter"
+        app:fab_addButtonColorNormal="@color/pink"
+        app:fab_addButtonColorPressed="@color/pink"
+        app:fab_addButtonPlusIconColor="@color/white"
+        app:fab_labelStyle="@style/CustFab"
+        android:id="@+id/sls_menu"
+        app:fab_menuIcon="@drawable/ico_more_vert_white"
         app:fabSize="normal"
         app:layout_anchor="@+id/sls_nested1"
-        app:layout_anchorGravity="end|bottom" />
-<!--        app:layout_anchor="@+id/sls_appbar"-->
+        app:layout_anchorGravity="end|bottom">
+
+        <toan.android.floatingactionmenu.FloatingActionButton
+            android:id="@+id/sls_get"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/pink"
+            app:fab_colorPressed="@color/ungu_muda"
+            app:fab_icon="@drawable/ico_search_white"
+            app:fab_size="normal"
+            app:fab_title="Get Data"/>
+
+        <toan.android.floatingactionmenu.FloatingActionButton
+            android:id="@+id/sls_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/pink"
+            app:fab_colorPressed="@color/ungu_muda"
+            app:fab_icon="@drawable/ico_filter"
+            app:fab_size="normal"
+            app:fab_title="Sort By"/>
+
+    </toan.android.floatingactionmenu.FloatingActionsMenu>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/sls_animsearch"

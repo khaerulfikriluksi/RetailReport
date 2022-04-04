@@ -685,20 +685,24 @@ public class FragmentDashboard extends Fragment {
                                     hm_brefresh.setVisibility(View.VISIBLE);
                                     run2 = true;
                                 } else {
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                    builder.setTitle("No Result");
-                                    builder.setMessage("Server respond 400, mohon kontak developer");
-                                    builder.setPositiveButton("Tutup aplikasi", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                            System.exit(0);
-                                        }
-                                    });
-                                    builder.show();
+                                    try {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                        builder.setTitle("No Result");
+                                        builder.setMessage("Server respond 400, mohon kontak developer");
+                                        builder.setPositiveButton("Tutup aplikasi", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                                System.exit(0);
+                                            }
+                                        });
+                                        builder.show();
+                                    } catch (Exception e){
+
+                                    }
                                 }
                             } catch (JSONException e) {
-//                                Log.v("Parsing-Error", e.getMessage());
+                                Log.v("Parsing-Error", e.getMessage());
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                 builder.setTitle("API Error");
                                 builder.setCancelable(false);

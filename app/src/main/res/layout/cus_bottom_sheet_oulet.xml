@@ -74,6 +74,7 @@
                     android:layout_width="match_parent"
                     android:paddingEnd="10dp"
                     android:paddingLeft="15dp"
+                    android:textSize="15dp"
                     android:text="2021-10-01"
                     android:inputType="none"
                     android:imeOptions="actionDone"
@@ -99,6 +100,7 @@
                     android:paddingEnd="10dp"
                     android:paddingLeft="15dp"
                     android:text="2021-10-01"
+                    android:textSize="15dp"
                     android:imeOptions="actionDone"
                     android:inputType="none"
                     android:gravity="center_vertical"
@@ -121,6 +123,7 @@
                     android:id="@+id/sls_spin_artikel"
                     android:layout_width="match_parent"
                     android:paddingLeft="15dp"
+                    android:textSize="15dp"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:maxLines="1"
@@ -149,6 +152,7 @@
                     android:layout_width="match_parent"
                     android:imeOptions="actionDone"
                     android:text="ALL"
+                    android:textSize="15dp"
                     android:inputType="none"
                     android:gravity="left"
                     android:layout_height="50dp"/>
@@ -172,6 +176,7 @@
                     android:imeOptions="actionDone"
                     android:text="ALL"
                     android:inputType="none"
+                    android:textSize="15dp"
                     android:gravity="left"
                     android:layout_height="50dp"/>
 
@@ -193,6 +198,7 @@
                     android:layout_width="match_parent"
                     android:imeOptions="actionDone"
                     android:text="ALL"
+                    android:textSize="15dp"
                     android:inputType="none"
                     android:gravity="left"
                     android:layout_height="50dp"/>
@@ -215,6 +221,31 @@
                     android:layout_width="match_parent"
                     android:imeOptions="actionDone"
                     android:text="ALL"
+                    android:textSize="15dp"
+                    android:inputType="none"
+                    android:gravity="left"
+                    android:layout_height="50dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:id="@+id/sls_spin_limit_head"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            app:expandedHintEnabled="false"
+            android:hint="Limit"
+            android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/sls_spin_limit"
+                    android:layout_width="match_parent"
+                    android:imeOptions="actionDone"
+                    android:text="Unlimited"
+                    android:textSize="15dp"
                     android:inputType="none"
                     android:gravity="left"
                     android:layout_height="50dp"/>

@@ -63,7 +63,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.urban.urbanreport.CustomClass.Cache;
 import com.urban.urbanreport.CustomClass.Home_recycle_adapter;
@@ -87,30 +86,40 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import toan.android.floatingactionmenu.FloatingActionButton;
+import toan.android.floatingactionmenu.FloatingActionsMenu;
+
 public class Foutlet extends AppCompatActivity {
+    ArrayList<String> kodecabang= new ArrayList<>();
     ArrayList<String> cabang= new ArrayList<>();
     ArrayList<String> tanggal= new ArrayList<>();
     ArrayList<String> achievement= new ArrayList<>();
+    ArrayList<Integer> nilai= new ArrayList<>();
     ArrayList<String> target= new ArrayList<>();
     ArrayList<String> sales= new ArrayList<>();
     ArrayList<String> exchange= new ArrayList<>();
-    FloatingActionButton floatingActionButton;
+    FloatingActionButton floatingActionButton, floatingfilter;
+    FloatingActionsMenu floatingmenu;
+    private boolean[] selectedfilter;
+    private String[] filters = {"Kode Cabang A-Z","Kode Cabang Z-A","Achievement 9-0","Achievement 0-9"};
     LottieAnimationView sls_animsearch,sls_animnoresult;
     ListView sls_listview;
     EditText sls_search;
     Outlet_list_adapter adapter;
     String DateFrom,DateTo;
-    String storeselected="ALL";
-    String brandselected="ALL";
+    String storeselected="ALL",brandselected="ALL",limitselected="Unlimited";
     Boolean methode=false;
     SQLiteDatabase db;
     String apiurl,api;
     ArrayList<String> store = new ArrayList<>();
     ArrayList<String> brand = new ArrayList<>();
+    ArrayList<String> limitvalue = new ArrayList<>();
     private Toolbar toolbar;
     private int count = 0;
 
@@ -129,7 +138,8 @@ public class Foutlet extends AppCompatActivity {
         sls_animsearch=(LottieAnimationView) findViewById(R.id.sls_animsearch);
         db = SQLiteDatabase.openDatabase("data/data/com.urban.urbanreport/databases/report.db", null,
                 SQLiteDatabase.OPEN_READWRITE);
-
+        selectedfilter = new boolean[filters.length];
+        selectedfilter[2]=true;
         Cursor cursss = db.rawQuery("SELECT * FROM tbl_api", null);
         cursss.moveToFirst();
         if (cursss.getCount()>0) {
@@ -158,6 +168,14 @@ public class Foutlet extends AppCompatActivity {
                     onBackPressed();
                 }
             });
+            limitvalue.add("Unlimited");
+            limitvalue.add("5");
+            limitvalue.add("10");
+            limitvalue.add("20");
+            limitvalue.add("50");
+            limitvalue.add("100");
+            limitvalue.add("500");
+            limitvalue.add("1000");
 
             if (Build.VERSION.SDK_INT >= 21) {
                 Window window = this.getWindow();
@@ -177,9 +195,11 @@ public class Foutlet extends AppCompatActivity {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     if (s.length()>0 && s.toString()!=null) {
+                        ArrayList<String> kodecabang1= new ArrayList<>();
                         ArrayList<String> cabang1= new ArrayList<>();
                         ArrayList<String> tanggal1= new ArrayList<>();
                         ArrayList<String> achievement1= new ArrayList<>();
+                        ArrayList<Integer> nilai1= new ArrayList<>();
                         ArrayList<String> target1= new ArrayList<>();
                         ArrayList<String> sales1= new ArrayList<>();
                         ArrayList<String> exchange1= new ArrayList<>();
@@ -188,15 +208,16 @@ public class Foutlet extends AppCompatActivity {
                                 cabang1.add(cabang.get(i));
                                 tanggal1.add(tanggal.get(i));
                                 achievement1.add(achievement.get(i));
+                                nilai1.add(nilai.get(i));
                                 target1.add(target.get(i));
                                 sales1.add(sales.get(i));
                                 exchange1.add(exchange.get(i));
                             }
                         }
-                        adapter = new Outlet_list_adapter(Foutlet.this,cabang1,tanggal1,achievement1,target1,sales1,exchange1);
+                        adapter = new Outlet_list_adapter(Foutlet.this,kodecabang1,cabang1,tanggal1,achievement1, nilai1,target1,sales1,exchange1);
                         sls_listview.setAdapter(adapter);
                     } else {
-                        adapter = new Outlet_list_adapter(Foutlet.this,cabang,tanggal,achievement,target,sales,exchange);
+                        adapter = new Outlet_list_adapter(Foutlet.this,kodecabang,cabang,tanggal,achievement, nilai,target,sales,exchange);
                         sls_listview.setAdapter(adapter);
                     }
                 }
@@ -207,10 +228,72 @@ public class Foutlet extends AppCompatActivity {
                 }
             });
 
+            floatingfilter=(FloatingActionButton) findViewById(R.id.sls_filter);
+//            if (cabang.size()>0) {
+//                floatingfilter.setVisibility(View.VISIBLE);
+//            } else {
+//                floatingfilter.setVisibility(View.GONE);
+//            }
             floatingActionButton=(FloatingActionButton) findViewById(R.id.sls_get);
+            floatingmenu = (FloatingActionsMenu) findViewById(R.id.sls_menu);
+            floatingmenu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+                @Override
+                public void onMenuExpanded() {
+//                    if (cabang.size()>0) {
+//                        floatingfilter.setVisibility(View.VISIBLE);
+//                    } else {
+//                        floatingfilter.setVisibility(View.GONE);
+//                    }
+                }
+
+                @Override
+                public void onMenuCollapsed() {
+
+                }
+            });
+            floatingfilter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    floatingmenu.collapse();
+                    if (achievement.size()>0) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Foutlet.this);
+                        builder.setTitle("Select Filter");
+                        builder.setMultiChoiceItems(filters, selectedfilter, new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                                for (int n = 0; n < selectedfilter.length; n++) {
+                                    if (n == i) {
+                                        selectedfilter[n]=true;
+                                        ((AlertDialog) dialogInterface).getListView().setItemChecked(i, true);
+                                    }
+                                    else {
+                                        selectedfilter[n]=false;
+                                        ((AlertDialog) dialogInterface).getListView().setItemChecked(i, false);
+                                    }
+                                }
+                                if (i==0) {
+                                    adapter.sortCabang(true);
+                                } else if (i==1){
+                                    adapter.sortCabang(false);
+                                } else if (i==2){
+                                    adapter.sortAchievement(false);
+                                } else if (i==3){
+                                    adapter.sortAchievement(true);
+                                }
+                                dialogInterface.dismiss();
+                            }
+                        });
+                        builder.show();
+                    } else {
+                        Toast.makeText(Foutlet.this, "No data to filter", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
             floatingActionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    floatingmenu.collapse();
                     BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(Foutlet.this,R.style.AppBottomSheetDialogTheme);
                     View bottomsheetview = LayoutInflater.from(Foutlet.this).inflate(
                             R.layout.cus_bottom_sheet_oulet,(LinearLayout) findViewById(R.id.cus_sls_bottomsheet));
@@ -219,11 +302,13 @@ public class Foutlet extends AppCompatActivity {
                     TextInputLayout sls_spin_store_head = (TextInputLayout) bottomsheetview.findViewById(R.id.sls_spin_store_head);
                     TextInputLayout sls_spin_brand_head = (TextInputLayout) bottomsheetview.findViewById(R.id.sls_spin_brand_head);
                     TextInputLayout sls_spin_cabang_head = (TextInputLayout) bottomsheetview.findViewById(R.id.sls_spin_cabang_head);
+                    TextInputLayout sls_spin_limit_head = (TextInputLayout) bottomsheetview.findViewById(R.id.sls_spin_limit_head);
 
                     AutoCompleteTextView sls_spin_store = (AutoCompleteTextView) bottomsheetview.findViewById(R.id.sls_spin_store);
                     AutoCompleteTextView sls_spin_brand = (AutoCompleteTextView) bottomsheetview.findViewById(R.id.sls_spin_brand);
                     AutoCompleteTextView sls_datefrom = (AutoCompleteTextView) bottomsheetview.findViewById(R.id.sls_datefrom);
                     AutoCompleteTextView sls_dateto = (AutoCompleteTextView) bottomsheetview.findViewById(R.id.sls_dateto);
+                    AutoCompleteTextView sls_spin_limit = (AutoCompleteTextView) bottomsheetview.findViewById(R.id.sls_spin_limit);
                     TextInputLayout sls_datefrom_head = (TextInputLayout) bottomsheetview.findViewById(R.id.sls_datefrom_head);
                     TextInputLayout sls_dateto_head = (TextInputLayout) bottomsheetview.findViewById(R.id.sls_dateto_head);
                     TextInputLayout sls_spin_artikel_head = (TextInputLayout) bottomsheetview.findViewById(R.id.sls_spin_artikel_head);
@@ -235,6 +320,7 @@ public class Foutlet extends AppCompatActivity {
                     //
                     sls_spin_store.setText(storeselected);
                     sls_spin_brand.setText(brandselected);
+                    sls_spin_limit.setText(limitselected);
                     //
                     sls_datefrom_head.setEndIconDrawable(R.drawable.ico_calendar_text);
                     sls_dateto_head.setEndIconDrawable(R.drawable.ico_calendar_text);
@@ -246,6 +332,7 @@ public class Foutlet extends AppCompatActivity {
                     sls_spin_store_head.setVisibility(View.VISIBLE);
                     sls_spin_artikel_head.setVisibility(View.GONE);
                     sls_spin_cabang_head.setVisibility(View.GONE);
+                    sls_spin_limit_head.setVisibility(View.VISIBLE);
                     //Adapter
                     ArrayAdapter<String> storeadapter = new ArrayAdapter<String>(Foutlet.this,
                             R.layout.cus_dropdown_spiner, store);
@@ -253,6 +340,9 @@ public class Foutlet extends AppCompatActivity {
                     ArrayAdapter<String> brandadapter = new ArrayAdapter<String>(Foutlet.this,
                             R.layout.cus_dropdown_spiner, brand);
                     sls_spin_brand.setAdapter(brandadapter);
+                    ArrayAdapter<String> limitadapter = new ArrayAdapter<String>(Foutlet.this,
+                            R.layout.cus_dropdown_spiner, limitvalue);
+                    sls_spin_limit.setAdapter(limitadapter);
                     //ActionEvent
                     sls_datefrom_head.setEndIconOnClickListener(new View.OnClickListener() {
                         @Override
@@ -455,16 +545,23 @@ public class Foutlet extends AppCompatActivity {
                                     data = "monthly";
                                     methode=true;
                                 }
+                                String limitnya="";
+                                if (sls_spin_limit.getText().toString().contains("Unlimited")) {
+                                    limitnya="";
+                                } else {
+                                    limitnya="&limit="+sls_spin_limit.getText().toString().trim();
+                                }
                                 apiurl = api + "/api/sales/outlet?" +
                                         "cabang=" + cb6 + "&" +
                                         "datefrom=" + sls_datefrom.getText().toString() + "&" +
                                         "dateto=" + sls_dateto.getText().toString() + "&" +
-                                        "data=" + data;
+                                        "data=" + data + limitnya;
                                 Log.v("API", apiurl);
                                 DateTo=sls_dateto.getText().toString();
                                 DateFrom=sls_datefrom.getText().toString();
                                 storeselected=sls_spin_store.getText().toString();
                                 brandselected=sls_spin_brand.getText().toString();
+                                limitselected=sls_spin_limit.getText().toString();
                                 bottomSheetDialog.dismiss();
                                 sls_search.setText("");
                                 get();
@@ -507,9 +604,11 @@ public class Foutlet extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void get() {
+        kodecabang.clear();
         cabang.clear();
         tanggal.clear();
         achievement.clear();
+        nilai.clear();
         target.clear();
         sales.clear();
         exchange.clear();
@@ -527,17 +626,21 @@ public class Foutlet extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             int status = jsonObject.getInt("status");
                             if (status==200) {
+                                selectedfilter = new boolean[filters.length];
+                                selectedfilter[2]=true;
                                 JSONArray jsonArray = jsonObject.getJSONArray("data");
                                 for (int position = 0; position < jsonArray.length(); position++) {
                                     JSONObject row = jsonArray.getJSONObject(position);
+                                    kodecabang.add(row.getString("Kode_Cabang"));
                                     cabang.add(row.getString("cabang"));
                                     tanggal.add(row.getString("Tanggal"));
                                     achievement.add("Rp. " + currency(row.getString("achievement")) + " (" + row.getString("persen") + "%)");
+                                    nilai.add(row.getInt("achievement"));
                                     target.add("Rp. " + currency(row.getString("target")));
                                     sales.add("Rp. " + currency(row.getString("harga_net_sales")) + " (" + row.getString("qty_sales") + " Pcs)");
                                     exchange.add("Rp. " + currency(row.getString("harga_net_exchange")) + " (" + row.getString("qty_exchange") + " Pcs)");
                                 }
-                                adapter = new Outlet_list_adapter(Foutlet.this,cabang,tanggal,achievement,target,sales,exchange);
+                                adapter = new Outlet_list_adapter(Foutlet.this,kodecabang,cabang,tanggal,achievement, nilai,target,sales,exchange);
                                 sls_listview.setAdapter(adapter);
                             } else {
                                 String message = jsonObject.getString("message");
