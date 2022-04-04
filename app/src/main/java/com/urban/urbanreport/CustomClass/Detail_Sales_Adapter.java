@@ -123,6 +123,21 @@ public class Detail_Sales_Adapter extends BaseAdapter {
             }
         } else {
             view = inflater.inflate(R.layout.adapter_subdetail, parent, false);
+            TextView departemen2 = (TextView) view.findViewById(R.id.departemen),
+                    bulan = (TextView) view.findViewById(R.id.bulan),
+                    day = (TextView) view.findViewById(R.id.day),
+                    monthly2 = (TextView) view.findViewById(R.id.monthly),
+                    daily2 = (TextView) view.findViewById(R.id.daily);
+            departemen2.setTag(position);
+            bulan.setTag(position);
+            day.setTag(position);
+            monthly2.setTag(position);
+            daily2.setTag(position);
+            departemen2.setText(departemen.get(position));
+            bulan.setText(monthly.get(position));
+            day.setText(daily.get(position));
+            monthly2.setText(monthly_sum.get(position)+" ("+monthly_qty.get(position)+")");
+            daily2.setText(daily_sum.get(position)+" ("+daily_qty.get(position)+")");
         }
         return view;
     }
