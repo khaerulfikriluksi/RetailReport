@@ -12,11 +12,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -44,13 +46,16 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.core.utilities.Utilities;
 import com.urban.urbanreport.CustomClass.Cache;
+import com.urban.urbanreport.CustomClass.Detail_Sales_Adapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -68,8 +73,8 @@ public class FDiscovery_Summary extends AppCompatActivity {
             dscsls_shimer4,dscsls_shimer5,dscsls_shimer6,
             dscsls_shimer7,dscsls_shimer8, dscsls_shimer11,
             dscsls_shimer22,dscsls_shimer33;
-    private Boolean run=false;
-    private String API,tanggal, bulan, tanggalfull, bulanfull;
+    private Boolean run=false,run2=false;
+    private String API,API2,APIGAMBAR,tanggal, bulan, tanggalfull, bulanfull;
     private SQLiteDatabase db;
     private Context context;
     private ListView dsc_list_departemen;
@@ -81,7 +86,7 @@ public class FDiscovery_Summary extends AppCompatActivity {
             dscsls_Lmonthly_online, dsc_lsummonthly_online, dscsls_lsumdaily_qty,
             dscsls_lsummonthly_qty, dscsls_lsumdaily_footwear_qty, dscsls_lsummonthly_footwear_qty,
             dscsls_lsumdaily_clothing_qty, dsc_lsummonthly_clothing_qty, dscsls_lsumdaily_online_qty,
-            dsc_lsummonthly_online_qty, dscsls_deptext;
+            dsc_lsummonthly_online_qty, dscsls_deptext, dscsls_detfootwear, dscsls_detclothing, dscsls_detonline;
     private Map<String, String> dataCache = new HashMap<String, String>();
     private SharedPreferences storageCache;
     private SharedPreferences.Editor CacheEditor;
@@ -121,7 +126,7 @@ public class FDiscovery_Summary extends AppCompatActivity {
                 DatePickerDialog datePickerDialog= new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        if (run==false) {
+                        if (run==false && run2==false) {
                             calendar.set(year, month, dayOfMonth);
                             final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             final SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("dd MMMM yyyy");
@@ -138,6 +143,12 @@ public class FDiscovery_Summary extends AppCompatActivity {
                             } else {
                                 get1();
                             }
+                            Cursor cr = db.rawQuery("SELECT * FROM tbl_detail_sales WHERE Tanggal='"+tanggal+"'",null);
+                            if (cr.getCount()>0){
+                                setValuedetail(tanggal);
+                            } else {
+                                get2();
+                            }
                         } else {
                             Toast.makeText(context,"Mohon tunggu sampai proses selesai",Toast.LENGTH_SHORT).show();
                         }
@@ -151,12 +162,58 @@ public class FDiscovery_Summary extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 get1();
+                get2();
             }
         });
         dscsls_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+        dscsls_detfootwear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent formku = new Intent(FDiscovery_Summary.this, FSubDetailSummary.class);
+                formku.putExtra("title","FOOTWEAR");
+                formku.putExtra("daily",dscsls_Ldayly.getText().toString());
+                formku.putExtra("sum_daily",dscsls_lsumdaily_footwear.getText().toString());
+                formku.putExtra("daily_qty",dscsls_lsumdaily_footwear_qty.getText().toString());
+                formku.putExtra("monthly",dscsls_Lmonthly.getText().toString());
+                formku.putExtra("sum_monthly",dscsls_lsummonthly_footwear.getText().toString());
+                formku.putExtra("monthly_qty",dscsls_lsummonthly_footwear_qty.getText().toString());
+                formku.putExtra("tanggal",tanggal);
+                startActivity(formku);
+            }
+        });
+        dscsls_detclothing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent formku = new Intent(FDiscovery_Summary.this, FSubDetailSummary.class);
+                formku.putExtra("title","CLOTHING");
+                formku.putExtra("daily",dscsls_Ldayly.getText().toString());
+                formku.putExtra("sum_daily",dscsls_lsumdaily_clothing.getText().toString());
+                formku.putExtra("daily_qty",dscsls_lsumdaily_clothing_qty.getText().toString());
+                formku.putExtra("monthly",dscsls_Lmonthly.getText().toString());
+                formku.putExtra("sum_monthly",dsc_lsummonthly_clothing.getText().toString());
+                formku.putExtra("monthly_qty",dsc_lsummonthly_clothing_qty.getText().toString());
+                formku.putExtra("tanggal",tanggal);
+                startActivity(formku);
+            }
+        });
+        dscsls_detonline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent formku = new Intent(FDiscovery_Summary.this, FSubDetailSummary.class);
+                formku.putExtra("title","ONLINE STORE");
+                formku.putExtra("daily",dscsls_Ldayly.getText().toString());
+                formku.putExtra("sum_daily",dscsls_lsumdaily_online.getText().toString());
+                formku.putExtra("daily_qty",dscsls_lsumdaily_online_qty.getText().toString());
+                formku.putExtra("monthly",dscsls_Lmonthly.getText().toString());
+                formku.putExtra("sum_monthly",dsc_lsummonthly_online.getText().toString());
+                formku.putExtra("monthly_qty",dsc_lsummonthly_online_qty.getText().toString());
+                formku.putExtra("tanggal",tanggal);
+                startActivity(formku);
             }
         });
     }
@@ -206,20 +263,28 @@ public class FDiscovery_Summary extends AppCompatActivity {
             if (cr.moveToFirst()) {
                 do {
                     Kode_Departemen.add(cr.getString(1));
-                    Departemen.add(cr.getString(1));
-                    Qty_Daily.add(cr.getString(1));
-                    Total_Daily.add(cr.getString(1));
-                    Qty_Bulan.add(cr.getString(1));
-                    Total_Bulan.add(cr.getString(1));
-                    Bulan.add(cr.getString(1));
-                    Tanggal.add(cr.getString(1));
+                    Departemen.add(cr.getString(2));
+                    Qty_Daily.add(cr.getString(3));
+                    Total_Daily.add(cr.getString(4));
+                    Qty_Bulan.add(cr.getString(5));
+                    Total_Bulan.add(cr.getString(6));
+                    Bulan.add(cr.getString(7));
+                    Tanggal.add(cr.getString(8));
                 } while (cr.moveToNext());
             }
+            Detail_Sales_Adapter adapter = new Detail_Sales_Adapter(FDiscovery_Summary.this, Kode_Departemen,Departemen,Tanggal,Total_Daily,Qty_Daily,Bulan,Total_Bulan,Qty_Bulan,"",false);
+            dsc_list_departemen.setAdapter(adapter);
+            Resources resources = context.getResources();
+            DisplayMetrics metrics = resources.getDisplayMetrics();
+            float px = 440 * (metrics.densityDpi / 160f);
+            dsc_list_departemen.getLayoutParams().height = (int) (px * adapter.getCount());
+        } else {
+            get2();
         }
-
     }
 
     private void initializeComp(){
+        dsc_list_departemen = (ListView) findViewById(R.id.dsc_list_departemen);
         dscsls_utama = (LinearLayout) findViewById(R.id.dscsls_utama);
         dscsls_loading = (LinearLayout) findViewById(R.id.dscsls_loading);
         dscsls_loading1 = (LinearLayout) findViewById(R.id.dscsls_loading1);
@@ -264,6 +329,9 @@ public class FDiscovery_Summary extends AppCompatActivity {
         dsc_lsummonthly_clothing_qty = (TextView) findViewById(R.id.dsc_lsummonthly_clothing_qty);
         dscsls_lsumdaily_online_qty = (TextView) findViewById(R.id.dscsls_lsumdaily_online_qty);
         dsc_lsummonthly_online_qty = (TextView) findViewById(R.id.dsc_lsummonthly_online_qty);
+        dscsls_detfootwear = (TextView) findViewById(R.id.dscsls_detfootwear);
+        dscsls_detclothing = (TextView) findViewById(R.id.dscsls_detclothing);
+        dscsls_detonline = (TextView) findViewById(R.id.dscsls_detonline);
     }
 
     private void shimerdetail(Boolean toogle) {
@@ -381,8 +449,11 @@ public class FDiscovery_Summary extends AppCompatActivity {
         cursor.moveToFirst();
         if (cursor.getCount()>0) {
             API=cursor.getString(1)+"/api/sales/summary-filter?";
+            API2=cursor.getString(1)+"/api/sales/detail?";
+            APIGAMBAR=cursor.getString(1)+"/product/";
             initializeComp();
             setValueComp(tanggal,bulan,tanggalfull,bulanfull);
+            setValuedetail(tanggal);
             clickListenerComp();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -466,70 +537,75 @@ public class FDiscovery_Summary extends AppCompatActivity {
         CacheEditor.commit();
     }
 
-    private void get1() {
-        if (run==false) {
-            final Calendar calendar = Calendar.getInstance();
-            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
-            String waktu = simpleDateFormat.format(calendar.getTime());
-            dscsls_lastupdate.setText("Updating");
-            startShimer(true);
+
+    private void get2() {
+        if (run2==false) {
+            shimerdetail(true);
             dscsls_swiperefresh.setRefreshing(true);
-            run = true;
-            String Filter = API+"date="+tanggal;
+            run2 = true;
+            String Filter = API2+"date="+tanggal+"&best_seller=1";
             Log.v("API", Filter);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, Filter,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            dscsls_swiperefresh.setRefreshing(false);
-                            startShimer(false);
-                            run = false;
+                            run2 = false;
+                            if (run==false) {
+                                dscsls_swiperefresh.setRefreshing(false);
+                                startShimer(false);
+                            }
+                            shimerdetail(false);
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
                                 int stat = jsonObject.getInt("status");
-                                if (stat == 200) {
-                                    remoceCacheStorage(tanggal,bulan);
+                                if (stat==200) {
                                     JSONObject object = jsonObject.getJSONObject("data");
-                                    JSONObject objsummary = object.getJSONObject("result");
-                                    saveCacheStorage(tanggal,bulan,1,waktu);
-                                    saveCacheStorage(tanggal,bulan,2,objsummary.getString("tanggal"));
-                                    saveCacheStorage(tanggal,bulan,3,"Rp. " + currency(objsummary.getString("daily")));
-                                    saveCacheStorage(tanggal,bulan,12,currency(objsummary.getString("daily_qty"))+" Pcs");
-                                    saveCacheStorage(tanggal,bulan,4,objsummary.getString("bulan"));
-                                    saveCacheStorage(tanggal,bulan,5,"Rp. " + currency(objsummary.getString("monthly")));
-                                    saveCacheStorage(tanggal,bulan,13,currency(objsummary.getString("monthly_qty"))+" Pcs");
+                                    JSONArray arr1 = object.getJSONArray("sellerDetail");
+                                    db.execSQL("DELETE FROM `tbl_detail_sales` WHERE `Tanggal`='"+tanggal+"'");
+                                    db.execSQL("DELETE FROM `tbl_detail_bestseller` WHERE `Tanggal`='"+tanggal+"'");
+                                    for (int position = 0; position < arr1.length(); position++) {
+                                        JSONObject row = arr1.getJSONObject(position);
+                                        String Kode_Departemen = row.getString("kode_departemen");
+                                        String Departemen = row.getString("departemen");
+                                        String Qty_Daily = currency(row.getString("qty_daily"))+" Pcs";
+                                        String Total_Daily = "Rp. "+currency(row.getString("Total_daily"));
+                                        String Qty_Bulan = currency(row.getString("qty_bln"))+" Pcs";
+                                        String Total_Bulan = "Rp. "+currency(row.getString("Total_bulan"));
+                                        String Bulan = row.getString("bulan");
+                                        db.execSQL("INSERT INTO `tbl_detail_sales` (`Kode_Departemen`,`Departemen`,`Qty_Daily`,`Total_Daily`,`Qty_Bulan`,`Total_Bulan`,`Bulan`,`Tanggal`) VALUES " +
+                                                "('"+Kode_Departemen+"','"+Departemen+"','"+Qty_Daily+"','"+Total_Daily+"','"+Qty_Bulan+"','"+Total_Bulan+"','"+Bulan+"','"+tanggal+"')");
+                                    }
                                     //
-                                    JSONObject row3 = object.getJSONObject("result_det_month");
-                                    saveCacheStorage(tanggal,bulan,7,"Rp. " + currency(row3.getString("footwear_month")));
-                                    saveCacheStorage(tanggal,bulan,15,currency(row3.getString("footwear_month_qty"))+" Pcs");
-                                    saveCacheStorage(tanggal,bulan,9,"Rp. " + currency(row3.getString("clothing_month")));
-                                    saveCacheStorage(tanggal,bulan,17,currency(row3.getString("clothing_month_qty"))+" Pcs");
-                                    saveCacheStorage(tanggal,bulan,11,"Rp. " + currency(row3.getString("onlinestore_month")));
-                                    saveCacheStorage(tanggal,bulan,19,currency(row3.getString("onlinestore_month_qty"))+" Pcs");
-                                    //
-                                    JSONObject row4 = object.getJSONObject("result_det_dayly");
-                                    saveCacheStorage(tanggal,bulan,6,"Rp. " + currency(row4.getString("footwear_day")));
-                                    saveCacheStorage(tanggal,bulan,14,currency(row4.getString("footwear_day_qty"))+" Pcs");
-                                    saveCacheStorage(tanggal,bulan,8,"Rp. " + currency(row4.getString("clothing_day")));
-                                    saveCacheStorage(tanggal,bulan,16,currency(row4.getString("clothing_day_qty"))+" Pcs");
-                                    saveCacheStorage(tanggal,bulan,10,"Rp. " + currency(row4.getString("onlinestore_day")));
-                                    saveCacheStorage(tanggal,bulan,18,currency(row4.getString("onlinestore_day_qty"))+" Pcs");
-                                    setValueComp(tanggal,bulan,tanggalfull,bulanfull);
+                                    JSONArray arr2 = object.getJSONArray("best_seller");
+                                    for (int position = 0; position < arr2.length(); position++) {
+                                        JSONObject row2 = arr2.getJSONObject(position);
+                                        String Kode_Departemen = row2.getString("Kode_Departemen");
+                                        String Kode_Barang = row2.getString("Kode_Barang");
+                                        String Nama_Barang = row2.getString("Nama_Barang");
+                                        String qty = row2.getString("qty");
+                                        String Foto = APIGAMBAR+row2.getString("foto");
+                                        db.execSQL("INSERT INTO `tbl_detail_bestseller` (`Kode_Departemen`,`Kode_Barang`,`Nama_Barang`,`qty`,`Foto`,`Tanggal`) VALUES " +
+                                                "('"+Kode_Departemen+"','"+Kode_Barang+"','"+Nama_Barang+"','"+qty+"','"+Foto+"','"+tanggal+"')");
+                                    }
+                                    setValuedetail(tanggal);
                                 } else {
                                     String message = jsonObject.getString("message");
                                     Toast.makeText(context,message, Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
-                                Toast.makeText(context,"Server not responding Error 400", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context,"Server not responding Error 400 : "+e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            run = false;
-                            startShimer(false);
-                            dscsls_swiperefresh.setRefreshing(false);
+                            run2 = false;
+                            if (run==false) {
+                                dscsls_swiperefresh.setRefreshing(false);
+                                startShimer(false);
+                            }
+                            shimerdetail(false);
                             if (error.getMessage()!=null) {
                                 Log.v("error", error.getMessage());
                             }
@@ -572,7 +648,124 @@ public class FDiscovery_Summary extends AppCompatActivity {
             requestQueue.add(stringRequest);
         } else {
             Toast.makeText(context,"Mohon tunggu sampai proses selesai",Toast.LENGTH_SHORT).show();
-            dscsls_swiperefresh.setRefreshing(false);
+            dscsls_swiperefresh.setRefreshing(true);
+        }
+    }
+
+
+    private void get1() {
+        if (run==false) {
+            final Calendar calendar = Calendar.getInstance();
+            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
+            String waktu = simpleDateFormat.format(calendar.getTime());
+            dscsls_lastupdate.setText("Updating");
+            startShimer(true);
+            dscsls_swiperefresh.setRefreshing(true);
+            run = true;
+            String Filter = API+"date="+tanggal;
+            Log.v("API", Filter);
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, Filter,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            run = false;
+                            if (run2==false) {
+                                dscsls_swiperefresh.setRefreshing(false);
+                            }
+                            startShimer(false);
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                int stat = jsonObject.getInt("status");
+                                if (stat == 200) {
+                                    remoceCacheStorage(tanggal,bulan);
+                                    JSONObject object = jsonObject.getJSONObject("data");
+                                    JSONObject objsummary = object.getJSONObject("result");
+                                    saveCacheStorage(tanggal,bulan,1,waktu);
+                                    saveCacheStorage(tanggal,bulan,2,objsummary.getString("tanggal"));
+                                    saveCacheStorage(tanggal,bulan,3,"Rp. " + currency(objsummary.getString("daily")));
+                                    saveCacheStorage(tanggal,bulan,12,currency(objsummary.getString("daily_qty"))+" Pcs");
+                                    saveCacheStorage(tanggal,bulan,4,objsummary.getString("bulan"));
+                                    saveCacheStorage(tanggal,bulan,5,"Rp. " + currency(objsummary.getString("monthly")));
+                                    saveCacheStorage(tanggal,bulan,13,currency(objsummary.getString("monthly_qty"))+" Pcs");
+                                    //
+                                    JSONObject row3 = object.getJSONObject("result_det_month");
+                                    saveCacheStorage(tanggal,bulan,7,"Rp. " + currency(row3.getString("footwear_month")));
+                                    saveCacheStorage(tanggal,bulan,15,currency(row3.getString("footwear_month_qty"))+" Pcs");
+                                    saveCacheStorage(tanggal,bulan,9,"Rp. " + currency(row3.getString("clothing_month")));
+                                    saveCacheStorage(tanggal,bulan,17,currency(row3.getString("clothing_month_qty"))+" Pcs");
+                                    saveCacheStorage(tanggal,bulan,11,"Rp. " + currency(row3.getString("onlinestore_month")));
+                                    saveCacheStorage(tanggal,bulan,19,currency(row3.getString("onlinestore_month_qty"))+" Pcs");
+                                    //
+                                    JSONObject row4 = object.getJSONObject("result_det_dayly");
+                                    saveCacheStorage(tanggal,bulan,6,"Rp. " + currency(row4.getString("footwear_day")));
+                                    saveCacheStorage(tanggal,bulan,14,currency(row4.getString("footwear_day_qty"))+" Pcs");
+                                    saveCacheStorage(tanggal,bulan,8,"Rp. " + currency(row4.getString("clothing_day")));
+                                    saveCacheStorage(tanggal,bulan,16,currency(row4.getString("clothing_day_qty"))+" Pcs");
+                                    saveCacheStorage(tanggal,bulan,10,"Rp. " + currency(row4.getString("onlinestore_day")));
+                                    saveCacheStorage(tanggal,bulan,18,currency(row4.getString("onlinestore_day_qty"))+" Pcs");
+                                    setValueComp(tanggal,bulan,tanggalfull,bulanfull);
+                                } else {
+                                    setValueComp(tanggal,bulan,tanggalfull,bulanfull);
+                                    String message = jsonObject.getString("message");
+                                    Toast.makeText(context,message, Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                setValueComp(tanggal,bulan,tanggalfull,bulanfull);
+                                Toast.makeText(context,"Server not responding Error 400 : "+e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            run = false;
+                            if (run2==false) {
+                                dscsls_swiperefresh.setRefreshing(false);
+                            }
+                            startShimer(false);
+                            if (error.getMessage()!=null) {
+                                Log.v("error", error.getMessage());
+                            }
+                            if (error instanceof NetworkError || error instanceof AuthFailureError || error instanceof NoConnectionError || error instanceof TimeoutError) {
+                                Toast.makeText(context,"Lost connect from server", Toast.LENGTH_LONG).show();
+                            } else if (error instanceof ServerError) {
+                                Toast.makeText(context,"Server not responding", Toast.LENGTH_LONG).show();
+                            }  else if (error instanceof ParseError) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setTitle("Application error");
+                                builder.setCancelable(false);
+                                builder.setMessage("Data Server error, Mohon kontak developer...");
+                                builder.setPositiveButton("Tutup aplikasi", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                        System.exit(0);
+                                    }
+                                });
+                                builder.show();
+                            }
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> headers = new HashMap<String, String>();
+                    headers.put("API_KEY", "53713");
+                    return headers;
+                }
+
+                @Override
+                public Response<String> parseNetworkResponse(NetworkResponse response) {
+                    String statusCode = String.valueOf(response.statusCode);
+                    return super.parseNetworkResponse(response);
+                }
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(context);
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            requestQueue.add(stringRequest);
+        } else {
+            Toast.makeText(context,"Mohon tunggu sampai proses selesai",Toast.LENGTH_SHORT).show();
+            dscsls_swiperefresh.setRefreshing(true);
         }
     }
 

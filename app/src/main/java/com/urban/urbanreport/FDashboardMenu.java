@@ -103,8 +103,10 @@ public class FDashboardMenu extends AppCompatActivity {
                     updt_version = (TextView) view.findViewById(R.id.updt_version),
                     updt_date = (TextView) view.findViewById(R.id.updt_date);
             updt_version.setText("New Update "+ver);
-            updt_notes.setText("1. Memperbaiki masalah google service pada device tertentu.\n" +
-                    "2. Device HUAWEI tanpa google sekarang bisa di akses.");
+            updt_notes.setText("1. Memperbaiki masalah BestSeller tidak tampil di beberapa device\n" +
+                    "2. Report baru di detail sales.\n"+
+                    "- Sales By Departement\n"+
+                    "- Store Detail sales");
             updt_notes.setMaxLines(7);
             updt_notes.setLines(7);
             updt_date.setText("2022-03-17");

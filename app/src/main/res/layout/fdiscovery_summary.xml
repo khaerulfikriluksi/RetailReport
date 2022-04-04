@@ -29,7 +29,7 @@
         android:paddingRight="10dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
     <TextView
         android:visibility="visible"
@@ -112,17 +112,17 @@
                                                 android:background="@drawable/bg_round_silver" />
 
                                             <TextView
+                                                android:id="@+id/dscsls_Ldayly"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_alignParentStart="true"
                                                 android:layout_alignParentLeft="true"
-                                                android:layout_marginRight="15dp"
                                                 android:layout_alignParentTop="true"
                                                 android:layout_marginLeft="20dp"
                                                 android:layout_marginTop="-2dp"
+                                                android:layout_marginRight="15dp"
                                                 android:fontFamily="@font/roboto_bold"
                                                 android:gravity="center"
-                                                android:id="@+id/dscsls_Ldayly"
                                                 android:text="16 March 2021"
                                                 android:textColor="#5E5E5E"
                                                 android:textSize="12dp" />
@@ -189,17 +189,17 @@
                                                 android:background="@drawable/bg_round_silver" />
 
                                             <TextView
+                                                android:id="@+id/dscsls_Lmonthly"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_alignParentStart="true"
                                                 android:layout_alignParentLeft="true"
-                                                android:layout_marginRight="15dp"
                                                 android:layout_alignParentTop="true"
                                                 android:layout_marginLeft="20dp"
                                                 android:layout_marginTop="-2dp"
+                                                android:layout_marginRight="15dp"
                                                 android:fontFamily="@font/roboto_bold"
                                                 android:gravity="center"
-                                                android:id="@+id/dscsls_Lmonthly"
                                                 android:text="March 2022"
                                                 android:textColor="#5E5E5E"
                                                 android:textSize="12dp" />
@@ -238,584 +238,29 @@
 
                         <androidx.core.widget.NestedScrollView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:scrollbars="none"
                             android:fillViewport="true">
-
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:orientation="vertical"
-                                android:paddingBottom="10dp"
                                 android:layout_height="wrap_content">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_height="wrap_content"
-                                    app:cardCornerRadius="20dp"
-                                    app:cardElevation="2dp">
-
-                                    <LinearLayout
-                                        android:paddingTop="5dp"
-                                        android:paddingBottom="5dp"
-                                        android:background="@color/putih_pucat"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:paddingRight="16dp"
-                                        android:paddingLeft="16dp">
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:textStyle="bold"
-                                                android:text="FootWear"
-                                                android:fontFamily="@font/roboto_mediumitalic"
-                                                android:textColor="@color/warna_text"
-                                                android:textSize="18dp" />
-                                        </LinearLayout>
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="8dp"
-                                            android:orientation="horizontal">
-
-                                            <androidx.cardview.widget.CardView
-                                                android:layout_width="160dp"
-                                                android:layout_height="90dp"
-                                                android:layout_marginTop="5dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_weight="1"
-                                                app:cardElevation="0dp"
-                                                app:cardCornerRadius="8dp">
-
-                                                <RelativeLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="match_parent"
-                                                    android:padding="8dp">
-
-                                                    <View
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="1dp"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginLeft="10dp"
-                                                        android:layout_marginTop="19dp"
-                                                        android:layout_marginRight="10dp"
-                                                        android:background="@drawable/bg_round_silver" />
-
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_marginRight="15dp"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_marginLeft="20dp"
-                                                        android:layout_marginTop="-2dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:gravity="center"
-                                                        android:text="16 March 2022"
-                                                        android:id="@+id/dscsls_Ldayly_footwear"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dscsls_lsumdaily_footwear"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="25dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dscsls_lsumdaily_footwear_qty"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="50dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                </RelativeLayout>
-
-                                            </androidx.cardview.widget.CardView>
-                                            <androidx.cardview.widget.CardView
-                                                android:layout_width="160dp"
-                                                android:layout_height="90dp"
-                                                android:layout_marginLeft="18dp"
-                                                android:layout_marginTop="5dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_weight="1"
-                                                app:cardElevation="0dp"
-                                                app:cardCornerRadius="8dp">
-
-                                                <RelativeLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="match_parent"
-                                                    android:padding="8dp">
-
-                                                    <View
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="1dp"
-                                                        android:layout_marginLeft="10dp"
-                                                        android:layout_marginRight="10dp"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="19dp"
-                                                        android:background="@drawable/bg_round_silver" />
-
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_marginRight="15dp"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_marginLeft="20dp"
-                                                        android:layout_marginTop="-2dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:gravity="center"
-                                                        android:text="March 2022"
-                                                        android:id="@+id/dscsls_Lmonthly_footwear"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dscsls_lsummonthly_footwear"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="25dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dscsls_lsummonthly_footwear_qty"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="50dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                </RelativeLayout>
-                                            </androidx.cardview.widget.CardView>
-                                        </LinearLayout>
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_height="wrap_content"
-                                    app:cardCornerRadius="20dp"
-                                    app:cardElevation="2dp">
-
-                                    <LinearLayout
-                                        android:paddingTop="5dp"
-                                        android:paddingBottom="5dp"
-                                        android:background="@color/putih_pucat"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:paddingRight="16dp"
-                                        android:paddingLeft="16dp">
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:textStyle="bold"
-                                                android:text="Clothing"
-                                                android:fontFamily="@font/roboto_mediumitalic"
-                                                android:textColor="@color/warna_text"
-                                                android:textSize="18dp" />
-                                        </LinearLayout>
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="8dp"
-                                            android:orientation="horizontal">
-
-                                            <androidx.cardview.widget.CardView
-                                                android:layout_width="160dp"
-                                                android:layout_height="90dp"
-                                                android:layout_marginTop="5dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_weight="1"
-                                                app:cardElevation="0dp"
-                                                app:cardCornerRadius="8dp">
-
-                                                <RelativeLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="match_parent"
-                                                    android:padding="8dp">
-
-                                                    <View
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="1dp"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginLeft="10dp"
-                                                        android:layout_marginTop="19dp"
-                                                        android:layout_marginRight="10dp"
-                                                        android:background="@drawable/bg_round_silver" />
-
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_marginRight="15dp"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_marginLeft="20dp"
-                                                        android:layout_marginTop="-2dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:gravity="center"
-                                                        android:text="16 March 2022"
-                                                        android:id="@+id/dscsls_Ldayly_clothing"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dscsls_lsumdaily_clothing"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="25dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dscsls_lsumdaily_clothing_qty"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="50dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                </RelativeLayout>
-
-                                            </androidx.cardview.widget.CardView>
-                                            <androidx.cardview.widget.CardView
-                                                android:layout_width="160dp"
-                                                android:layout_height="90dp"
-                                                android:layout_marginLeft="18dp"
-                                                android:layout_marginTop="5dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_weight="1"
-                                                app:cardElevation="0dp"
-                                                app:cardCornerRadius="8dp">
-
-                                                <RelativeLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="match_parent"
-                                                    android:padding="8dp">
-
-                                                    <View
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="1dp"
-                                                        android:layout_marginLeft="10dp"
-                                                        android:layout_marginRight="10dp"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="19dp"
-                                                        android:background="@drawable/bg_round_silver" />
-
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_marginRight="15dp"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_marginLeft="20dp"
-                                                        android:layout_marginTop="-2dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:gravity="center"
-                                                        android:text="March 2022"
-                                                        android:id="@+id/dscsls_Lmonthly_clothing"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dsc_lsummonthly_clothing"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="25dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dsc_lsummonthly_clothing_qty"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="50dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                </RelativeLayout>
-                                            </androidx.cardview.widget.CardView>
-                                        </LinearLayout>
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:layout_height="wrap_content"
-                                    app:cardCornerRadius="20dp"
-                                    app:cardElevation="2dp">
-
-                                    <LinearLayout
-                                        android:paddingTop="5dp"
-                                        android:paddingBottom="5dp"
-                                        android:background="@color/putih_pucat"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:paddingRight="16dp"
-                                        android:paddingLeft="16dp">
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:textStyle="bold"
-                                                android:text="Online Store"
-                                                android:fontFamily="@font/roboto_mediumitalic"
-                                                android:textColor="@color/warna_text"
-                                                android:textSize="18dp" />
-                                        </LinearLayout>
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="8dp"
-                                            android:orientation="horizontal">
-
-                                            <androidx.cardview.widget.CardView
-                                                android:layout_width="160dp"
-                                                android:layout_height="90dp"
-                                                android:layout_marginTop="5dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_weight="1"
-                                                app:cardElevation="0dp"
-                                                app:cardCornerRadius="8dp">
-
-                                                <RelativeLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="match_parent"
-                                                    android:padding="8dp">
-
-                                                    <View
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="1dp"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginLeft="10dp"
-                                                        android:layout_marginTop="19dp"
-                                                        android:layout_marginRight="10dp"
-                                                        android:background="@drawable/bg_round_silver" />
-
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_marginRight="15dp"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_marginLeft="20dp"
-                                                        android:layout_marginTop="-2dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:gravity="center"
-                                                        android:text="16 March 2022"
-                                                        android:id="@+id/dscsls_Ldayly_online"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dscsls_lsumdaily_online"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="25dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dscsls_lsumdaily_online_qty"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="50dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                </RelativeLayout>
-
-                                            </androidx.cardview.widget.CardView>
-                                            <androidx.cardview.widget.CardView
-                                                android:layout_width="160dp"
-                                                android:layout_height="90dp"
-                                                android:layout_marginLeft="18dp"
-                                                android:layout_marginTop="5dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_weight="1"
-                                                app:cardElevation="0dp"
-                                                app:cardCornerRadius="8dp">
-
-                                                <RelativeLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="match_parent"
-                                                    android:padding="8dp">
-
-                                                    <View
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="1dp"
-                                                        android:layout_marginLeft="10dp"
-                                                        android:layout_marginRight="10dp"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="19dp"
-                                                        android:background="@drawable/bg_round_silver" />
-
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentStart="true"
-                                                        android:layout_alignParentLeft="true"
-                                                        android:layout_marginRight="15dp"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_marginLeft="20dp"
-                                                        android:layout_marginTop="-2dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:gravity="center"
-                                                        android:text="March 2022"
-                                                        android:id="@+id/dscsls_Lmonthly_online"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dsc_lsummonthly_online"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="25dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/dsc_lsummonthly_online_qty"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_alignParentTop="true"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginTop="50dp"
-                                                        android:fontFamily="@font/roboto_bold"
-                                                        android:text=""
-                                                        android:textAlignment="center"
-                                                        android:textColor="#5E5E5E"
-                                                        android:textSize="12dp" />
-
-                                                </RelativeLayout>
-                                            </androidx.cardview.widget.CardView>
-                                        </LinearLayout>
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                                <TextView
-                                    android:id="@+id/dscsls_deptext"
-                                    android:layout_width="match_parent"
-                                    android:fontFamily="@font/roboto_bold"
-                                    android:text="Sales by Departement"
-                                    android:textSize="15dp"
-                                    android:layout_height="wrap_content"/>
-
                                 <LinearLayout
-                                    android:id="@+id/dscsls_loading1"
                                     android:layout_width="match_parent"
                                     android:orientation="vertical"
-                                    android:layout_height="wrap_content">
+                                    android:paddingBottom="10dp"
+                                    android:layout_height="fill_parent">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:fontFamily="@font/roboto_bold"
+                                        android:text="Total Sales by Store"
+                                        android:textColor="@color/ungu_muda"
+                                        android:textSize="17dp"
+                                        android:textStyle="bold"
+                                        android:layout_height="wrap_content"/>
 
                                     <androidx.cardview.widget.CardView
                                         android:layout_width="match_parent"
@@ -839,6 +284,19 @@
                                             <LinearLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textStyle="bold"
+                                                    android:text="FootWear"
+                                                    android:fontFamily="@font/roboto_mediumitalic"
+                                                    android:textColor="@color/warna_text"
+                                                    android:textSize="18dp" />
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
                                                 android:layout_marginTop="8dp"
                                                 android:orientation="horizontal">
 
@@ -851,34 +309,66 @@
                                                     app:cardElevation="0dp"
                                                     app:cardCornerRadius="8dp">
 
-                                                    <com.facebook.shimmer.ShimmerFrameLayout
-                                                        android:id="@+id/dscsls_shimer11"
+                                                    <RelativeLayout
                                                         android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content">
+                                                        android:layout_height="match_parent"
+                                                        android:padding="8dp">
 
-                                                        <RelativeLayout
+                                                        <View
                                                             android:layout_width="match_parent"
-                                                            android:layout_height="match_parent"
-                                                            android:padding="8dp">
+                                                            android:layout_height="1dp"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginLeft="10dp"
+                                                            android:layout_marginTop="19dp"
+                                                            android:layout_marginRight="10dp"
+                                                            android:background="@drawable/bg_round_silver" />
 
-                                                            <TextView
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="30dp"
-                                                                android:layout_alignParentTop="true"
-                                                                android:layout_gravity="center"
-                                                                android:background="#E7E7E7"
-                                                                android:textSize="12dp" />
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_marginRight="15dp"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_marginLeft="20dp"
+                                                            android:layout_marginTop="-2dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:gravity="center"
+                                                            android:text="16 March 2022"
+                                                            android:id="@+id/dscsls_Ldayly_footwear"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
 
-                                                            <TextView
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="wrap_content"
-                                                                android:layout_alignParentTop="true"
-                                                                android:layout_gravity="center"
-                                                                android:layout_marginTop="50dp"
-                                                                android:background="#E7E7E7"
-                                                                android:textSize="12dp" />
-                                                        </RelativeLayout>
-                                                    </com.facebook.shimmer.ShimmerFrameLayout>
+                                                        <TextView
+                                                            android:id="@+id/dscsls_lsumdaily_footwear"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="25dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                        <TextView
+                                                            android:id="@+id/dscsls_lsumdaily_footwear_qty"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="50dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                    </RelativeLayout>
 
                                                 </androidx.cardview.widget.CardView>
                                                 <androidx.cardview.widget.CardView
@@ -891,93 +381,521 @@
                                                     app:cardElevation="0dp"
                                                     app:cardCornerRadius="8dp">
 
-                                                    <com.facebook.shimmer.ShimmerFrameLayout
-                                                        android:id="@+id/dscsls_shimer22"
+                                                    <RelativeLayout
                                                         android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content">
+                                                        android:layout_height="match_parent"
+                                                        android:padding="8dp">
 
-                                                        <RelativeLayout
+                                                        <View
                                                             android:layout_width="match_parent"
-                                                            android:layout_height="match_parent"
-                                                            android:padding="8dp">
+                                                            android:layout_height="1dp"
+                                                            android:layout_marginLeft="10dp"
+                                                            android:layout_marginRight="10dp"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="19dp"
+                                                            android:background="@drawable/bg_round_silver" />
 
-                                                            <TextView
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="30dp"
-                                                                android:layout_alignParentTop="true"
-                                                                android:layout_gravity="center"
-                                                                android:background="#E7E7E7"
-                                                                android:textSize="12dp" />
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_marginRight="15dp"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_marginLeft="20dp"
+                                                            android:layout_marginTop="-2dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:gravity="center"
+                                                            android:text="March 2022"
+                                                            android:id="@+id/dscsls_Lmonthly_footwear"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
 
-                                                            <TextView
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="wrap_content"
-                                                                android:layout_alignParentTop="true"
-                                                                android:layout_gravity="center"
-                                                                android:layout_marginTop="50dp"
-                                                                android:background="#E7E7E7"
-                                                                android:textSize="12dp" />
-                                                        </RelativeLayout>
-                                                    </com.facebook.shimmer.ShimmerFrameLayout>
+                                                        <TextView
+                                                            android:id="@+id/dscsls_lsummonthly_footwear"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="25dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
 
+                                                        <TextView
+                                                            android:id="@+id/dscsls_lsummonthly_footwear_qty"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="50dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                    </RelativeLayout>
                                                 </androidx.cardview.widget.CardView>
-
                                             </LinearLayout>
 
-                                            <com.facebook.shimmer.ShimmerFrameLayout
-                                                android:id="@+id/dscsls_shimer33"
+                                            <RelativeLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content">
 
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:orientation="vertical"
-                                                    android:layout_height="wrap_content">
+                                                <TextView
+                                                    android:id="@+id/dscsls_detfootwear"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_marginRight="10dp"
+                                                    android:foreground="?android:attr/selectableItemBackground"
+                                                    android:text="Detail"
+                                                    android:textColor="@color/blue"
+                                                    android:textStyle="italic" />
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                    </androidx.cardview.widget.CardView>
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="match_parent"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_height="wrap_content"
+                                        app:cardCornerRadius="20dp"
+                                        app:cardElevation="2dp">
+
+                                        <LinearLayout
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:background="@color/putih_pucat"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:paddingRight="16dp"
+                                            android:paddingLeft="16dp">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textStyle="bold"
+                                                    android:text="Clothing"
+                                                    android:fontFamily="@font/roboto_mediumitalic"
+                                                    android:textColor="@color/warna_text"
+                                                    android:textSize="18dp" />
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="8dp"
+                                                android:orientation="horizontal">
+
+                                                <androidx.cardview.widget.CardView
+                                                    android:layout_width="160dp"
+                                                    android:layout_height="90dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:layout_weight="1"
+                                                    app:cardElevation="0dp"
+                                                    app:cardCornerRadius="8dp">
+
+                                                    <RelativeLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:padding="8dp">
+
+                                                        <View
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="1dp"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginLeft="10dp"
+                                                            android:layout_marginTop="19dp"
+                                                            android:layout_marginRight="10dp"
+                                                            android:background="@drawable/bg_round_silver" />
 
                                                         <TextView
-                                                            android:layout_marginTop="8dp"
-                                                            android:background="#E7E7E7"
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="wrap_content"/>
-
-                                                        <LinearLayout
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
-                                                            android:layout_marginTop="8dp"
-                                                            android:orientation="horizontal">
-                                                            <ImageView
-                                                                android:layout_width="160dp"
-                                                                android:layout_height="180dp"
-                                                                android:layout_marginTop="5dp"
-                                                                android:layout_marginBottom="5dp"
-                                                                android:background="#E7E7E7"/>
-                                                            <ImageView
-                                                                android:layout_width="160dp"
-                                                                android:layout_height="180dp"
-                                                                android:layout_marginLeft="18dp"
-                                                                android:layout_marginTop="5dp"
-                                                                android:layout_marginBottom="5dp"
-                                                                android:background="#E7E7E7"/>
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_marginRight="15dp"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_marginLeft="20dp"
+                                                            android:layout_marginTop="-2dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:gravity="center"
+                                                            android:text="16 March 2022"
+                                                            android:id="@+id/dscsls_Ldayly_clothing"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
 
-                                                        </LinearLayout>
-                                                </LinearLayout>
+                                                        <TextView
+                                                            android:id="@+id/dscsls_lsumdaily_clothing"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="25dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
 
-                                            </com.facebook.shimmer.ShimmerFrameLayout>
+                                                        <TextView
+                                                            android:id="@+id/dscsls_lsumdaily_clothing_qty"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="50dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
 
+                                                    </RelativeLayout>
+
+                                                </androidx.cardview.widget.CardView>
+                                                <androidx.cardview.widget.CardView
+                                                    android:layout_width="160dp"
+                                                    android:layout_height="90dp"
+                                                    android:layout_marginLeft="18dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:layout_weight="1"
+                                                    app:cardElevation="0dp"
+                                                    app:cardCornerRadius="8dp">
+
+                                                    <RelativeLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:padding="8dp">
+
+                                                        <View
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="1dp"
+                                                            android:layout_marginLeft="10dp"
+                                                            android:layout_marginRight="10dp"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="19dp"
+                                                            android:background="@drawable/bg_round_silver" />
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_marginRight="15dp"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_marginLeft="20dp"
+                                                            android:layout_marginTop="-2dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:gravity="center"
+                                                            android:text="March 2022"
+                                                            android:id="@+id/dscsls_Lmonthly_clothing"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                        <TextView
+                                                            android:id="@+id/dsc_lsummonthly_clothing"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="25dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                        <TextView
+                                                            android:id="@+id/dsc_lsummonthly_clothing_qty"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="50dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                    </RelativeLayout>
+                                                </androidx.cardview.widget.CardView>
+                                            </LinearLayout>
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:id="@+id/dscsls_detclothing"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_marginRight="10dp"
+                                                    android:foreground="?android:attr/selectableItemBackground"
+                                                    android:text="Detail"
+                                                    android:textColor="@color/blue"
+                                                    android:textStyle="italic" />
+
+                                            </RelativeLayout>
+                                        </LinearLayout>
+
+                                    </androidx.cardview.widget.CardView>
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="match_parent"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_height="wrap_content"
+                                        app:cardCornerRadius="20dp"
+                                        app:cardElevation="2dp">
+
+                                        <LinearLayout
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:background="@color/putih_pucat"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:paddingRight="16dp"
+                                            android:paddingLeft="16dp">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textStyle="bold"
+                                                    android:text="Online Store"
+                                                    android:fontFamily="@font/roboto_mediumitalic"
+                                                    android:textColor="@color/warna_text"
+                                                    android:textSize="18dp" />
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="8dp"
+                                                android:orientation="horizontal">
+
+                                                <androidx.cardview.widget.CardView
+                                                    android:layout_width="160dp"
+                                                    android:layout_height="90dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:layout_weight="1"
+                                                    app:cardElevation="0dp"
+                                                    app:cardCornerRadius="8dp">
+
+                                                    <RelativeLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:padding="8dp">
+
+                                                        <View
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="1dp"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginLeft="10dp"
+                                                            android:layout_marginTop="19dp"
+                                                            android:layout_marginRight="10dp"
+                                                            android:background="@drawable/bg_round_silver" />
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_marginRight="15dp"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_marginLeft="20dp"
+                                                            android:layout_marginTop="-2dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:gravity="center"
+                                                            android:text="16 March 2022"
+                                                            android:id="@+id/dscsls_Ldayly_online"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                        <TextView
+                                                            android:id="@+id/dscsls_lsumdaily_online"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="25dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                        <TextView
+                                                            android:id="@+id/dscsls_lsumdaily_online_qty"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="50dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                    </RelativeLayout>
+
+                                                </androidx.cardview.widget.CardView>
+                                                <androidx.cardview.widget.CardView
+                                                    android:layout_width="160dp"
+                                                    android:layout_height="90dp"
+                                                    android:layout_marginLeft="18dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:layout_weight="1"
+                                                    app:cardElevation="0dp"
+                                                    app:cardCornerRadius="8dp">
+
+                                                    <RelativeLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:padding="8dp">
+
+                                                        <View
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="1dp"
+                                                            android:layout_marginLeft="10dp"
+                                                            android:layout_marginRight="10dp"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="19dp"
+                                                            android:background="@drawable/bg_round_silver" />
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentLeft="true"
+                                                            android:layout_marginRight="15dp"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_marginLeft="20dp"
+                                                            android:layout_marginTop="-2dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:gravity="center"
+                                                            android:text="March 2022"
+                                                            android:id="@+id/dscsls_Lmonthly_online"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                        <TextView
+                                                            android:id="@+id/dsc_lsummonthly_online"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="25dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                        <TextView
+                                                            android:id="@+id/dsc_lsummonthly_online_qty"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentTop="true"
+                                                            android:layout_gravity="center"
+                                                            android:layout_marginTop="50dp"
+                                                            android:fontFamily="@font/roboto_bold"
+                                                            android:text=""
+                                                            android:textAlignment="center"
+                                                            android:textColor="#5E5E5E"
+                                                            android:textSize="12dp" />
+
+                                                    </RelativeLayout>
+                                                </androidx.cardview.widget.CardView>
+                                            </LinearLayout>
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:id="@+id/dscsls_detonline"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_marginRight="10dp"
+                                                    android:foreground="?android:attr/selectableItemBackground"
+                                                    android:text="Detail"
+                                                    android:textColor="@color/blue"
+                                                    android:textStyle="italic" />
+
+                                            </RelativeLayout>
                                         </LinearLayout>
 
                                     </androidx.cardview.widget.CardView>
 
                                 </LinearLayout>
 
-                                <ListView
-                                    android:id="@+id/dsc_list_departemen"
-                                    android:visibility="gone"
-                                    android:layout_marginTop="8dp"
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"/>
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/dscsls_deptext"
+                                        android:layout_width="match_parent"
+                                        android:fontFamily="@font/roboto_bold"
+                                        android:textColor="@color/ungu_muda"
+                                        android:text="Total Sales by Departement"
+                                        android:textSize="17dp"
+                                        android:textStyle="bold"
+                                        android:layout_height="wrap_content"/>
+
+                                    <ListView
+                                        android:id="@+id/dsc_list_departemen"
+                                        android:visibility="visible"
+                                        android:layout_marginTop="8dp"
+                                        android:divider="@null"
+                                        android:nestedScrollingEnabled="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"/>
+
+                                </LinearLayout>
 
                             </LinearLayout>
+
 
                         </androidx.core.widget.NestedScrollView>
 
@@ -1508,6 +1426,166 @@
                     </LinearLayout>
 
                 </androidx.core.widget.NestedScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dscsls_loading1"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="@color/putih_pucat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="160dp"
+                                android:layout_height="90dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1"
+                                app:cardElevation="0dp"
+                                app:cardCornerRadius="8dp">
+
+                                <com.facebook.shimmer.ShimmerFrameLayout
+                                    android:id="@+id/dscsls_shimer11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:padding="8dp">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="30dp"
+                                            android:layout_alignParentTop="true"
+                                            android:layout_gravity="center"
+                                            android:background="#E7E7E7"
+                                            android:textSize="12dp" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentTop="true"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="50dp"
+                                            android:background="#E7E7E7"
+                                            android:textSize="12dp" />
+                                    </RelativeLayout>
+                                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="160dp"
+                                android:layout_height="90dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1"
+                                app:cardElevation="0dp"
+                                app:cardCornerRadius="8dp">
+
+                                <com.facebook.shimmer.ShimmerFrameLayout
+                                    android:id="@+id/dscsls_shimer22"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:padding="8dp">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="30dp"
+                                            android:layout_alignParentTop="true"
+                                            android:layout_gravity="center"
+                                            android:background="#E7E7E7"
+                                            android:textSize="12dp" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentTop="true"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="50dp"
+                                            android:background="#E7E7E7"
+                                            android:textSize="12dp" />
+                                    </RelativeLayout>
+                                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/dscsls_shimer33"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_marginTop="8dp"
+                                    android:background="#E7E7E7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="160dp"
+                                        android:layout_height="180dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:background="#E7E7E7"/>
+                                    <ImageView
+                                        android:layout_width="160dp"
+                                        android:layout_height="180dp"
+                                        android:layout_marginLeft="18dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:background="#E7E7E7"/>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 

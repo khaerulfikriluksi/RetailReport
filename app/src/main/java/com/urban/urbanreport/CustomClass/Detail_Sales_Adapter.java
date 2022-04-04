@@ -3,6 +3,7 @@ package com.urban.urbanreport.CustomClass;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,8 +37,10 @@ public class Detail_Sales_Adapter extends BaseAdapter {
     private ArrayList<String> monthly_sum;
     private ArrayList<String> monthly_qty;
     private SQLiteDatabase db;
+    private Boolean isSubdetail=false;
+    private String jenis_store;
 
-    public Detail_Sales_Adapter(Context mContext, ArrayList<String> kd_departemen ,ArrayList<String> departemen, ArrayList<String> daily, ArrayList<String> daily_sum, ArrayList<String> daily_qty, ArrayList<String> monthly, ArrayList<String> monthly_sum, ArrayList<String> monthly_qty) {
+    public Detail_Sales_Adapter(Context mContext, ArrayList<String> kd_departemen ,ArrayList<String> departemen, ArrayList<String> daily, ArrayList<String> daily_sum, ArrayList<String> daily_qty, ArrayList<String> monthly, ArrayList<String> monthly_sum, ArrayList<String> monthly_qty,String jenis_store, Boolean isSubdetail) {
         db = SQLiteDatabase.openDatabase("data/data/com.urban.urbanreport/databases/report.db", null,
                 SQLiteDatabase.OPEN_READWRITE);
         this.mContext = mContext;
@@ -49,6 +53,8 @@ public class Detail_Sales_Adapter extends BaseAdapter {
         this.monthly = monthly;
         this.monthly_sum = monthly_sum;
         this.monthly_qty = monthly_qty;
+        this.isSubdetail=isSubdetail;
+        this.jenis_store=jenis_store;
     }
 
     public int getCount() {
@@ -83,16 +89,16 @@ public class Detail_Sales_Adapter extends BaseAdapter {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date date = format.parse(daily.get(position));
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM yyyy");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
             detsls_Ldayly.setText(dateFormat.format(date));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        detsls_Ldayly_sum.setText("Rp. "+currency(daily_sum.get(position)));
-        detsls_Ldayly_qty.setText(currency(daily_qty.get(position)));
+        detsls_Ldayly_sum.setText(daily_sum.get(position));
+        detsls_Ldayly_qty.setText(daily_qty.get(position));
         detsls_Lmonthly.setText(monthly.get(position));
-        detsls_Lmonthly_sum.setText("Rp. "+currency(monthly_sum.get(position)));
-        detsls_Lmonthly_qty.setText(currency(monthly_qty.get(position)));
+        detsls_Lmonthly_sum.setText(monthly_sum.get(position));
+        detsls_Lmonthly_qty.setText(monthly_qty.get(position));
         detsls_bestlabel.setText("Best Seller "+monthly.get(position));
         detsls_recycle.setLayoutManager(layoutManager);
         ArrayList<String> itemcode = new ArrayList<>();
@@ -100,27 +106,38 @@ public class Detail_Sales_Adapter extends BaseAdapter {
         ArrayList<String> itemqty = new ArrayList<>();
         ArrayList<String> urlgambar = new ArrayList<>();
         ArrayList<String> stock = new ArrayList<>();
-        Cursor cr = db.rawQuery("SELECT * FROM tbl_detail_bestseller WHERE `Kode_Departemen`='"+kd_departemen.get(position)+"' AND `Tanggal`='"+daily.get(position)+"'",null);
-        if (cr.getCount()>0){
-            if (cr.moveToFirst()) {
-                do {
-                    itemcode.add(cr.getString(2));
-                    itemname.add(cr.getString(3));
-                    itemqty.add(cr.getString(4));
-                    urlgambar.add(cr.getString(5));
-                    stock.add("");
-                } while (cr.moveToNext());
+        if (isSubdetail==false) {
+            Cursor crx = db.rawQuery("SELECT * FROM tbl_detail_bestseller WHERE `Kode_Departemen`='" + kd_departemen.get(position) + "' AND `Tanggal`='" + daily.get(position) + "'", null);
+            if (crx.getCount() > 0) {
+                if (crx.moveToFirst()) {
+                    do {
+                        itemcode.add(crx.getString(2));
+                        itemname.add(crx.getString(3));
+                        itemqty.add(crx.getString(4));
+                        urlgambar.add(crx.getString(5));
+                        stock.add("");
+                    } while (crx.moveToNext());
+                }
+                Home_recycle_adapter recycle_adapter = new Home_recycle_adapter(mContext, itemcode, itemname, itemqty, urlgambar, stock, false);
+                detsls_recycle.setAdapter(recycle_adapter);
             }
-            Home_recycle_adapter recycle_adapter = new Home_recycle_adapter(mContext,itemcode,itemname,itemqty,urlgambar,stock,false);
-            detsls_recycle.setAdapter(recycle_adapter);
+        } else {
+            Cursor cr = db.rawQuery("SELECT * FROM tbl_subdetail_bestseller WHERE `Kode_Departemen`='" + kd_departemen.get(position) + "' AND `Tanggal`='" + daily.get(position) + "' AND Jenis_Store='"+jenis_store+"'", null);
+            if (cr.getCount() > 0) {
+                if (cr.moveToFirst()) {
+                    do {
+                        itemcode.add(cr.getString(3));
+                        itemname.add(cr.getString(4));
+                        itemqty.add(cr.getString(5));
+                        urlgambar.add(cr.getString(6));
+                        stock.add("");
+                    } while (cr.moveToNext());
+                }
+                Home_recycle_adapter recycle_adapter = new Home_recycle_adapter(mContext, itemcode, itemname, itemqty, urlgambar, stock, false);
+                detsls_recycle.setAdapter(recycle_adapter);
+            }
         }
         return view;
-    }
-
-    private String currency(String num) {
-        double m = Double.parseDouble(num);
-        DecimalFormat formatter = new DecimalFormat("###,###,###");
-        return formatter.format(m);
     }
 
 
