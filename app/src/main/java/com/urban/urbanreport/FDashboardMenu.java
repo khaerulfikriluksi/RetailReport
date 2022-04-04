@@ -106,7 +106,8 @@ public class FDashboardMenu extends AppCompatActivity {
             updt_notes.setText("1. Memperbaiki masalah BestSeller tidak tampil di beberapa device\n" +
                     "2. Report baru di detail sales.\n"+
                     "- Sales By Departement\n"+
-                    "- Store Detail sales");
+                    "- Store Detail sales\n"+
+                    "3. Meningkatkan performa splash screen");
             updt_notes.setMaxLines(7);
             updt_notes.setLines(7);
             updt_date.setText("2022-03-17");
