@@ -145,7 +145,12 @@ public class FSubDetailSummary extends AppCompatActivity {
             if (cr.getCount()>0){
                 setValuedetail(Tanggal,title);
             } else {
-                get2();
+                Cursor crx = db.rawQuery("SELECT * FROM tbl_subdetail_sales WHERE Tanggal='"+Tanggal+"' AND Jenis_Store='"+title+"'",null);
+                if (crx.getCount()>0) {
+                    setValuedetail(Tanggal,title);
+                } else {
+                    get2();
+                }
             }
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(FSubDetailSummary.this);
@@ -199,10 +204,24 @@ public class FSubDetailSummary extends AppCompatActivity {
             }
             Detail_Sales_Adapter adapter = new Detail_Sales_Adapter(FSubDetailSummary.this, Kode_Departemen,Departemen,Tanggal,Total_Daily,Qty_Daily,Bulan,Total_Bulan,Qty_Bulan,title,true);
             subdet_listview.setAdapter(adapter);
-//            Resources resources = FSubDetailSummary.this.getResources();
-//            DisplayMetrics metrics = resources.getDisplayMetrics();
-//            float px = 540 * (metrics.densityDpi / 160f);
-//            subdet_listview.getLayoutParams().height = (int) (px * adapter.getCount());
+        } else {
+            Cursor crx = db.rawQuery("SELECT * FROM tbl_subdetail_sales_month WHERE Tanggal='"+tanggal+"' AND Jenis_Store='"+store+"'",null);
+            if (crx.getCount()>0) {
+                if (crx.moveToFirst()) {
+                    do {
+                        Kode_Departemen.add("Kosong");
+                        Departemen.add(crx.getString(2));
+                        Qty_Daily.add("0 Pcs");
+                        Total_Daily.add("Rp. 0");
+                        Qty_Bulan.add(crx.getString(3));
+                        Total_Bulan.add(crx.getString(4));
+                        Bulan.add(crx.getString(5));
+                        Tanggal.add(crx.getString(6));
+                    } while (crx.moveToNext());
+                }
+                Detail_Sales_Adapter adapter = new Detail_Sales_Adapter(FSubDetailSummary.this, Kode_Departemen,Departemen,Tanggal,Total_Daily,Qty_Daily,Bulan,Total_Bulan,Qty_Bulan,title,true);
+                subdet_listview.setAdapter(adapter);
+            }
         }
     }
 
@@ -293,6 +312,7 @@ public class FSubDetailSummary extends AppCompatActivity {
                                 JSONObject object = jsonObject.getJSONObject("data");
                                 JSONArray arr1 = object.getJSONArray("result_subdetail");
                                 db.execSQL("DELETE FROM `tbl_subdetail_sales` WHERE `Tanggal`='"+Tanggal+"'");
+                                db.execSQL("DELETE FROM `tbl_subdetail_sales_month` WHERE `Tanggal`='"+Tanggal+"'");
                                 db.execSQL("DELETE FROM `tbl_subdetail_bestseller` WHERE `Tanggal`='"+Tanggal+"'");
                                 for (int position = 0; position < arr1.length(); position++) {
                                     JSONObject row = arr1.getJSONObject(position);
@@ -319,6 +339,18 @@ public class FSubDetailSummary extends AppCompatActivity {
                                     String Foto = APIGAMBAR+row2.getString("foto");
                                     db.execSQL("INSERT INTO `tbl_subdetail_bestseller` (`Jenis_Store`,`Kode_Departemen`,`Kode_Barang`,`Nama_Barang`,`qty`,`Foto`,`Tanggal`) VALUES " +
                                             "('"+jenis_store+"','"+Kode_Departemen+"','"+Kode_Barang+"','"+Nama_Barang+"','"+qty+"','"+Foto+"','"+Tanggal+"')");
+                                }
+                                //
+                                JSONArray arr3 = object.getJSONArray("result_subdetail_monthly");
+                                for (int position = 0; position < arr3.length(); position++) {
+                                    JSONObject row3 = arr3.getJSONObject(position);
+                                    String jenis_store = row3.getString("jenis_store");
+                                    String departemen = row3.getString("departemen");
+                                    String Qty_Bulan = currency(row3.getString("qty_bln"))+" Pcs";
+                                    String Total_Bulan = "Rp. "+currency(row3.getString("Total_bulan"));
+                                    String Bulan = row3.getString("bulan");
+                                    db.execSQL("INSERT INTO `tbl_subdetail_sales_month` (`Jenis_Store`,`Departemen`,`Qty_Bulan`,`Total_Bulan`,`Bulan`,`Tanggal`) VALUES " +
+                                            "('"+jenis_store+"','"+departemen+"','"+Qty_Bulan+"','"+Total_Bulan+"','"+Bulan+"','"+Tanggal+"')");
                                 }
                                 setValuedetail(Tanggal, title);
                             } else {

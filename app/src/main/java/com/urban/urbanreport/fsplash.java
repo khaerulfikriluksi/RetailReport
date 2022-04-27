@@ -189,6 +189,13 @@ public class fsplash extends AppCompatActivity implements UpdateHelper.onUpdateC
                 "Total_Bulan varchar(255)," +
                 "Bulan varchar(255)," +
                 "Tanggal DATE);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `tbl_subdetail_sales_month` (id INTEGER PRIMARY KEY, " +
+                "Jenis_Store varchar(255)," +
+                "Departemen varchar(255)," +
+                "Qty_Bulan varchar(255)," +
+                "Total_Bulan varchar(255)," +
+                "Bulan varchar(255)," +
+                "Tanggal DATE);");
         db.execSQL("CREATE TABLE IF NOT EXISTS `tbl_detail_bestseller` (id INTEGER PRIMARY KEY, " +
                 "Kode_Departemen varchar(255)," +
                 "Kode_Barang varchar(255)," +
