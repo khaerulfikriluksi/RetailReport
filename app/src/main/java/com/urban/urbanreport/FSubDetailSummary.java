@@ -145,7 +145,7 @@ public class FSubDetailSummary extends AppCompatActivity {
             if (cr.getCount()>0){
                 setValuedetail(Tanggal,title);
             } else {
-                Cursor crx = db.rawQuery("SELECT * FROM tbl_subdetail_sales WHERE Tanggal='"+Tanggal+"' AND Jenis_Store='"+title+"'",null);
+                Cursor crx = db.rawQuery("SELECT * FROM tbl_subdetail_sales_month WHERE Tanggal='"+Tanggal+"' AND Jenis_Store='"+title+"'",null);
                 if (crx.getCount()>0) {
                     setValuedetail(Tanggal,title);
                 } else {
