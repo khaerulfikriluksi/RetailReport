@@ -47,7 +47,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -199,7 +202,7 @@ public class FSubDetailSummary extends AppCompatActivity {
                     Qty_Bulan.add(cr.getString(6));
                     Total_Bulan.add(cr.getString(7));
                     Bulan.add(cr.getString(8));
-                    Tanggal.add(cr.getString(9));
+                    Tanggal.add(subdet_Ldayly.getText().toString());
                 } while (cr.moveToNext());
             }
             Detail_Sales_Adapter adapter = new Detail_Sales_Adapter(FSubDetailSummary.this, Kode_Departemen,Departemen,Tanggal,Total_Daily,Qty_Daily,Bulan,Total_Bulan,Qty_Bulan,title,true);
@@ -216,7 +219,7 @@ public class FSubDetailSummary extends AppCompatActivity {
                         Qty_Bulan.add(crx.getString(3));
                         Total_Bulan.add(crx.getString(4));
                         Bulan.add(crx.getString(5));
-                        Tanggal.add(crx.getString(6));
+                        Tanggal.add(subdet_Ldayly.getText().toString());
                     } while (crx.moveToNext());
                 }
                 Detail_Sales_Adapter adapter = new Detail_Sales_Adapter(FSubDetailSummary.this, Kode_Departemen,Departemen,Tanggal,Total_Daily,Qty_Daily,Bulan,Total_Bulan,Qty_Bulan,title,true);

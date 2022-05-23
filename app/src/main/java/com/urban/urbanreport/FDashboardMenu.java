@@ -103,15 +103,17 @@ public class FDashboardMenu extends AppCompatActivity {
                     updt_version = (TextView) view.findViewById(R.id.updt_version),
                     updt_date = (TextView) view.findViewById(R.id.updt_date);
             updt_version.setText("New Update "+ver);
+//            updt_notes.setText(
+//                    "1. Fungsi baru di menu 'Sales By Store'\n" +
+//                    "   - Sort Data\n"+
+//                    "   - Limit untuk pencarian data\n"+
+//                    "   - Data di urut berdasarkan \n"+
+//                    "     toko dengan Achievement tertinggi (Default)");
             updt_notes.setText(
-                    "1. Fungsi baru di menu 'Sales By Store'\n" +
-                    "   - Sort Data\n"+
-                    "   - Limit untuk pencarian data\n"+
-                    "   - Data di urut berdasarkan \n"+
-                    "     toko dengan Achievement tertinggi (Default)");
+                    "Mememperbaiki View Detail Penjualan by departement.");
             updt_notes.setMaxLines(7);
             updt_notes.setLines(7);
-            updt_date.setText("2022-04-27");
+            updt_date.setText("2022-05-23");
             builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
